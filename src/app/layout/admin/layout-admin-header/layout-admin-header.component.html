@@ -1,0 +1,13 @@
+<div class="header-right-box">
+  <a nz-dropdown [nzDropdownMenu]="menu" class="userInfo">
+    <nz-avatar nzIcon="user"></nz-avatar>
+    {{user == null? '': user.name}}
+    <i nz-icon nzType="down"></i>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item>个人中心</li>
+      <li nz-menu-item (click)="logOut()">退出登录</li>
+    </ul>
+  </nz-dropdown-menu>
+</div>

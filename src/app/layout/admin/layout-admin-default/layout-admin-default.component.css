@@ -1,0 +1,47 @@
+.trigger {
+  font-size: 18px;
+  line-height: 50px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.ant-layout-header{
+  height: 50px;
+  line-height: 50px;
+}
+.ant-layout-content{
+  background: white;
+  margin: 10px 10px 0;
+  padding: 15px;
+}
+.trigger:hover {
+  color: #1890ff;
+}
+.ant-layout{
+  height: 100%;
+  overflow: hidden;
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+}
+
+nz-content {
+  margin: 0 16px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+}
+
+:host /deep/ .ant-layout-footer {
+  padding: 15px 20px;;
+  text-align: center;
+}

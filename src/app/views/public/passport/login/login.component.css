@@ -1,0 +1,46 @@
+.container{
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: url("/assets/email-pattern.png");
+}
+.ant-card{
+  box-shadow: 0 4px 7px #d4d0d0;
+  width: 380px;
+  padding: 10px;
+  margin: auto;
+  position: relative;
+  top: calc(50% - 200px);
+}
+.register-btn{
+  float: left;
+}
+.forget-password-btn{
+  float: right;
+}
+.ant-form-item{
+  margin-bottom: 15px;
+}
+input{
+  height: 35px;
+}
+.title-box{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.title-box img{
+  width: 40px;
+  margin-top: -12px;
+  margin-right: 5px;
+  margin-left: -10px;
+}
+.title-box h2{
+  display: inline-block;
+}
+:host /deep/ .ant-input-group-addon{
+  padding: 0;
+  margin: 0;
+  height: 35px;
+  border: none;
+}

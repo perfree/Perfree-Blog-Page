@@ -1,0 +1,22 @@
+<div class="logo">
+  <img src="/assets/logo-white.png">
+  <h2 [hidden]="isCollapsed">PerfreeBlog</h2>
+</div>
+<ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+  <ng-container *ngFor="let menu of menus">
+    <ng-container *ngIf="menu.pid === -1 && menu.childMenu.length <= 0">
+      <li nz-menu-item nzMatchRouterExact [routerLink]="[menu.menuPath === null ? '': menu.menuPath]" [nzSelected]="menu.menuIsSelect">
+        <i nz-icon [nzType]="menu.menuIcon"></i>
+        <span>{{menu.menuName}}</span>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="menu.childMenu.length > 0">
+      <li nz-submenu [nzTitle]="menu.menuName" [nzIcon]="menu.menuIcon" [nzOpen]="menu.menuIsSelect">
+        <ul *ngFor="let childMenu of menu.childMenu">
+          <li nz-menu-item nzMatchRouterExact [routerLink]="[childMenu.menuPath === null ? '': childMenu.menuPath]"
+              [nzSelected]="childMenu.menuIsSelect">{{childMenu.menuName}}</li>
+        </ul>
+      </li>
+    </ng-container>
+  </ng-container>
+</ul>

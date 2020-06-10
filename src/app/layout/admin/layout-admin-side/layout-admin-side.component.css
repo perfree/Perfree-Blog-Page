@@ -1,0 +1,19 @@
+.logo {
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  border-bottom: 1px solid #00050a;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.logo img{
+  width: 30px;
+  margin-top: -8px;
+}
+.logo h2{
+  font-size: 19px;
+  color: #eaebed;
+  display: inline-block;
+  margin-left: 8px;
+}

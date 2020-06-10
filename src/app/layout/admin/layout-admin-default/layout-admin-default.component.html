@@ -1,0 +1,20 @@
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <app-layout-admin-side [isCollapsed]="isCollapsed" [menus]="menus"></app-layout-admin-side>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <i
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></i>
+      <app-layout-admin-header></app-layout-admin-header>
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>BootPress ©2020 By Perfree</nz-footer>
+  </nz-layout>
+</nz-layout>

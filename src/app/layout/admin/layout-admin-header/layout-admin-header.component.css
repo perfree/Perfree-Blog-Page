@@ -1,0 +1,10 @@
+.header-right-box{
+  display: inline-block;
+  float: right;
+  margin-right: 24px;
+}
+.userInfo{
+  display: inline-block;
+  height: 100%;
+  color: #314659;
+}

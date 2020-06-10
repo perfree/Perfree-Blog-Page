@@ -1,0 +1,16 @@
+<div class="mianBox">
+  <img src="/assets/yun0.png" alt="" class="yun yun0" />
+  <img src="/assets/yun1.png" alt="" class="yun yun1" />
+  <img src="/assets/yun2.png" alt="" class="yun yun2" />
+  <img src="/assets/bird.png" alt="" class="bird" />
+  <img src="/assets/san.png" alt="" class="san" />
+  <div class="tipInfo">
+    <div class="in">
+      <div class="textThis">
+        <h2>{{exceptionMsg}}</h2>
+        <p *ngIf="timerStatus"><span>页面自动 <b id="wait">{{timerNumber}}</b> 秒后自动<a id="href" (click)="break()">{{breakMsg}}</a></span></p>
+        <p *ngIf="!timerStatus">请稍后再试或返回至<a [routerLink]="'/'">  首页</a></p>
+      </div>
+    </div>
+  </div>
+</div>
