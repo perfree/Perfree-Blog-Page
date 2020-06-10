@@ -19,6 +19,7 @@ import {DatePipe} from '@angular/common';
 import {DefaultInterceptor} from './core/net/default.Interceptor';
 import {LoginGuard} from './core/canActivate/loginGuard';
 import { LayoutPortalDefaultComponent } from './layout/portal/layout-portal-default/layout-portal-default.component';
+import { LayoutPortalHeaderComponent } from './layout/portal/layout-portal-header/layout-portal-header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LayoutPortalDefaultComponent } from './layout/portal/layout-portal-defa
     LayoutAdminDefaultComponent,
     LayoutAdminHeaderComponent,
     LayoutAdminSideComponent,
-    LayoutPortalDefaultComponent
+    LayoutPortalDefaultComponent,
+    LayoutPortalHeaderComponent
   ],
   imports: [
     BrowserModule,
