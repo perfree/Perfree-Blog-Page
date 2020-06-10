@@ -18,13 +18,15 @@ import {Kit} from './core/common/Kit';
 import {DatePipe} from '@angular/common';
 import {DefaultInterceptor} from './core/net/default.Interceptor';
 import {LoginGuard} from './core/canActivate/loginGuard';
+import { LayoutPortalDefaultComponent } from './layout/portal/layout-portal-default/layout-portal-default.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LayoutAdminDefaultComponent,
     LayoutAdminHeaderComponent,
-    LayoutAdminSideComponent
+    LayoutAdminSideComponent,
+    LayoutPortalDefaultComponent
   ],
   imports: [
     BrowserModule,
