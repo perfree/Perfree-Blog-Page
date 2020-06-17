@@ -13,6 +13,21 @@
     </ng-template>
   </div>
   <div class="right-box">
-    <i nz-icon nzType="bell" nzTheme="outline"></i>
+    <a class="notice-btn">
+      <nz-badge [nzCount]="5">
+        <i nz-icon nzType="bell" nzTheme="outline" style="font-size: 18px;color: #595959;"></i>
+      </nz-badge>
+    </a>
+    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" class="right-user-info">
+      Click me
+      <i nz-icon nzType="down" style="padding-right: 5px"></i>
+      <nz-avatar nzIcon="user"></nz-avatar>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item>1st menu item</li>
+        <li nz-menu-item>2nd menu item</li>
+      </ul>
+    </nz-dropdown-menu>
   </div>
 </div>

@@ -34,3 +34,11 @@
   font-size: 18px;
   font-weight: 700;
 }
+.right-user-info{
+  height: 50px;
+  display: inline-block;
+  color: #595959;
+}
+.notice-btn{
+  padding-right: 10px;
+}
