@@ -1,11 +1,18 @@
 <div class="header-box">
   <div class="logo-box">
-    logo
+    <img src="/assets/logo.png" class="logo-img">
+    <span class="logo-text">Perfree</span>
   </div>
+  <!-- 搜索 -->
   <div class="search-box">
-    search
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input type="text" nz-input placeholder="input search text" />
+    </nz-input-group>
+    <ng-template #suffixIconSearch>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
   </div>
   <div class="right-box">
-    right
+    <i nz-icon nzType="bell" nzTheme="outline"></i>
   </div>
 </div>
