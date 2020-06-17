@@ -1,0 +1,15 @@
+.aside-box{
+  width: 220px;
+  background: antiquewhite;
+  height: calc(100% - 100px);
+}
+.user-info-box{
+  height: 185px;
+  width: 100%;
+  padding: 15px;
+  background: #b9b9b9;
+}
+.menu-box{
+  height: calc(100% - 185px);
+  width: 100%;
+}

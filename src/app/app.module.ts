@@ -20,6 +20,9 @@ import {DefaultInterceptor} from './core/net/default.Interceptor';
 import {LoginGuard} from './core/canActivate/loginGuard';
 import { LayoutPortalDefaultComponent } from './layout/portal/layout-portal-default/layout-portal-default.component';
 import { LayoutPortalHeaderComponent } from './layout/portal/layout-portal-header/layout-portal-header.component';
+import { LayoutPortalAsideComponent } from './layout/portal/layout-portal-aside/layout-portal-aside.component';
+import { LayoutPortalContentAsideComponent } from './layout/portal/layout-portal-content-aside/layout-portal-content-aside.component';
+import { LayoutPortalFooterComponent } from './layout/portal/layout-portal-footer/layout-portal-footer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { LayoutPortalHeaderComponent } from './layout/portal/layout-portal-heade
     LayoutAdminHeaderComponent,
     LayoutAdminSideComponent,
     LayoutPortalDefaultComponent,
-    LayoutPortalHeaderComponent
+    LayoutPortalHeaderComponent,
+    LayoutPortalAsideComponent,
+    LayoutPortalContentAsideComponent,
+    LayoutPortalFooterComponent
   ],
   imports: [
     BrowserModule,

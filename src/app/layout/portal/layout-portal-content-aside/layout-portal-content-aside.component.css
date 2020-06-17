@@ -1,0 +1,8 @@
+.content-aside{
+  width: 220px;
+  background: azure;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
