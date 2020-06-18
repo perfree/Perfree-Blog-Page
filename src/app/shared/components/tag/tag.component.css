@@ -1,0 +1,12 @@
+.tag-box{
+  padding: 15px;
+}
+.tag-box-tip{
+  font-size: 13px;
+  color: #95989a;
+  display: inline-block;
+}
+.ant-tag {
+  margin-top: 8px;
+  cursor: pointer;
+}

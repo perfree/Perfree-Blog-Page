@@ -1,0 +1,35 @@
+.hot-article-box{
+  padding: 15px;
+}
+.hot-article-tip{
+  font-size: 13px;
+  color: #95989a;
+  display: inline-block;
+}
+.hot-article{
+  position: relative;
+  margin-top: 10px;
+  display: block;
+  color: inherit;
+}
+.hot-article-img{
+  width: 45px;
+  height: 45px;
+  box-shadow: 0 0 2px #bfbfbf;
+  border-radius: 5px;
+}
+.hot-article-right{
+  width: calc(100% - 50px);
+  position: absolute;
+  right: 0;
+  top: 0;
+  word-wrap: break-word;
+}
+.hot-article-title{
+  display: inline-block;
+  width: 100%;
+}
+.hot-article-info{
+  font-size: 13px;
+  color: #858484;
+}

@@ -23,6 +23,7 @@ import { LayoutPortalHeaderComponent } from './layout/portal/layout-portal-heade
 import { LayoutPortalAsideComponent } from './layout/portal/layout-portal-aside/layout-portal-aside.component';
 import { LayoutPortalContentAsideComponent } from './layout/portal/layout-portal-content-aside/layout-portal-content-aside.component';
 import { LayoutPortalFooterComponent } from './layout/portal/layout-portal-footer/layout-portal-footer.component';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LayoutPortalFooterComponent } from './layout/portal/layout-portal-foote
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: zh_CN},

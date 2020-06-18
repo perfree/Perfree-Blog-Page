@@ -9,10 +9,9 @@ import {LayoutPortalDefaultComponent} from './layout/portal/layout-portal-defaul
 const routes: Routes = [
   {
     path: '',
-    canActivate: [LoginGuard],
     component: LayoutPortalDefaultComponent,
     children: [
-      /* {path: 'admin/user', loadChildren: './views/user/user.module#UserModule'}*/
+      {path: '', loadChildren: './views/portal/home/home.module#HomeModule'}
     ]
   },
   {
