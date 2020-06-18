@@ -1,15 +1,79 @@
 .aside-box{
   width: 220px;
-  background: antiquewhite;
   height: calc(100% - 100px);
+  background: #f9f9f9;
 }
 .user-info-box{
   height: 185px;
   width: 100%;
   padding: 15px;
-  background: #b9b9b9;
+  background: #f9f9f9;
+  text-align: center;
+  border-bottom: 1px solid #edeaea;
 }
 .menu-box{
   height: calc(100% - 185px);
   width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 8px;
+}
+.user-img{
+  width: 100px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+.user-name{
+  margin-top: 2px;
+  color: #58666e;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  word-break: break-all;
+  height: 22px;
+}
+.user-introduction{
+  color: #98a6ad!important;
+  font-size: 13px;
+  cursor: pointer;
+  word-break: break-all;
+}
+.nav-tip{
+  font-size: 13px;
+  color: #95989a;
+  margin-left: 15px;
+}
+.menu-ul{
+  margin-top: 2px;
+  background: #f9f9f9;
+  border: none;
+}
+.ant-menu-vertical .ant-menu-item::after,
+.ant-menu-vertical-left .ant-menu-item::after,
+.ant-menu-vertical-right .ant-menu-item::after,
+.ant-menu-inline .ant-menu-item::after{
+  border-right: none;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background: #e7e7e7;
+}
+.ant-menu-item-selected,.ant-menu-submenu-selected{
+  color: inherit;
+}
+.ant-menu-item{
+  margin: 0;
+}
+.ant-menu-item:hover,.ant-menu-submenu:hover,.ant-menu-submenu-active{
+  color: inherit!important;
+  background: #e7e7e7;
+}
+.ant-menu-vertical .ant-menu-item:not(:last-child),
+.ant-menu-vertical-left .ant-menu-item:not(:last-child),
+.ant-menu-vertical-right .ant-menu-item:not(:last-child),
+.ant-menu-inline .ant-menu-item:not(:last-child){
+  margin: 0;
+}
+::ng-deep .ant-menu-inline .ant-menu-submenu-title{
+  margin: 0;
 }

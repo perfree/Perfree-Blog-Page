@@ -4,6 +4,7 @@
   margin: auto;
   position: relative;
   box-shadow: 0 0 8px #bfbfbf;
+  overflow: hidden;
 }
 
 .content-box{
