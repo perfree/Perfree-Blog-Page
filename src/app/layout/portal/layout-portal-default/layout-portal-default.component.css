@@ -13,10 +13,24 @@
   top: 50px;
   left: 220px;
   background: #e5eaea;
-  height: calc(100% - 100px);
+  height: calc(100% - 50px);
+  overflow-y: auto;
 }
 .content-part{
   width: calc(100% - 220px);
-  background: #fdfeff;
+  background: #efefef;
   height: 100%;
+  padding: 0 15px 0;
+}
+.content-box::-webkit-scrollbar {
+  width: 6px;
+  height: 1px;
+}
+.content-box::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #9ea7b4;
+}
+.content-box::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #d7dde4;
 }

@@ -1,0 +1,40 @@
+.article-box{
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 15px;
+}
+.article-img{
+  min-height: 250px;
+  max-height: 280px;
+  width: 100%;
+}
+.article-content-box{
+  padding: 20px;
+}
+.article-title{
+  color: #555555;
+  font-weight: 600;
+  font-size: 22px;
+}
+.article-description{
+  color: #878787;
+  font-size: 15px;
+}
+.ant-divider-horizontal {
+  display: block;
+  clear: both;
+  width: 100%;
+  min-width: 100%;
+  height: 1px;
+  margin: 0 0 10px;
+}
+.ant-divider {
+  background: rgba(237,241,242,.6);
+}
+.article-info{
+  font-size: 13px;
+  margin-right: 8px;
+  color: #939393;
+  font-weight: 400;
+}
