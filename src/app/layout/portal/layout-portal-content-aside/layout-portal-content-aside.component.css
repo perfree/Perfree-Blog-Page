@@ -1,8 +1,8 @@
 .content-aside{
   width: 220px;
   background: #f9f9f9;
-  position: absolute;
   right: 0;
-  top: 0;
-  height: 100%;
+  top: 50px;
+  position: absolute;
+  height: calc(100% - 100px);
 }

@@ -1,26 +1,21 @@
 .container{
   width: 70%;
-  height: 100%;
   margin: auto;
   position: relative;
   box-shadow: 0 0 8px #bfbfbf;
-  overflow: hidden;
 }
 
 .content-box{
   width: calc(100% - 220px);
-  position: absolute;
-  top: 50px;
-  left: 220px;
-  background: #e5eaea;
-  height: calc(100% - 50px);
-  overflow-y: auto;
+  margin-left: 220px;
+  background: #efefef;
+  min-height: calc(100% - 50px);
 }
 .content-part{
-  width: calc(100% - 220px);
   background: #efefef;
-  height: 100%;
-  padding: 0 15px 0;
+  min-height: calc(100vh - 115px);
+  padding: 15px 15px 0px;
+  width: calc(100% - 220px);
 }
 .content-box::-webkit-scrollbar {
   width: 6px;

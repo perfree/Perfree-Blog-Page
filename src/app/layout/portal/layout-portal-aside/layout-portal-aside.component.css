@@ -2,6 +2,7 @@
   width: 220px;
   height: calc(100% - 50px);
   background: #f9f9f9;
+  position: fixed;
 }
 .user-info-box{
   height: 185px;
