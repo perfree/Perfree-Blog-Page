@@ -35,6 +35,15 @@ export class LayoutAdminDefaultComponent implements OnInit {
         }
       }
     });
+    if (url === '') {
+      if (menus[0].childMenu.length > 0) {
+        url = menus[0].childMenu[0].menuPath;
+        menus[0].childMenu[0].menuIsSelect = true;
+      } else {
+        url = menus[0].menuPath;
+        menus[0].menuIsSelect = true;
+      }
+    }
     return url;
   }
 }

@@ -67,6 +67,7 @@ export class LayoutAdminDefaultResolver implements Resolve<LayoutAdminDefaultCom
         }
       }
     });
+    console.log(menus)
     return menus;
   }
 }

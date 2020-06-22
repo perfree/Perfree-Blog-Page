@@ -25,8 +25,15 @@
     </a>
     <nz-dropdown-menu #menu="nzDropdownMenu">
       <ul nz-menu>
-        <li nz-menu-item>1st menu item</li>
-        <li nz-menu-item>2nd menu item</li>
+        <li nz-menu-item>
+          <a><i nz-icon nzType="user" nzTheme="outline"></i> 个人中心</a>
+        </li>
+        <li nz-menu-item>
+          <a routerLink="/admin"><i nz-icon nzType="safety-certificate" nzTheme="outline"></i> 后台管理</a>
+        </li>
+        <li nz-menu-item>
+          <a><i nz-icon nzType="import" nzTheme="outline"></i> 退出登录</a>
+        </li>
       </ul>
     </nz-dropdown-menu>
   </div>

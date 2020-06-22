@@ -43,3 +43,11 @@
 .notice-btn{
   padding-right: 10px;
 }
+.ant-dropdown-menu{
+  border-radius: 0;
+  padding: 0;
+  width: 120px;
+  position: absolute;
+  top: -3px;
+  right: -14px;
+}
