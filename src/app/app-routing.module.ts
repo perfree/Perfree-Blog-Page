@@ -11,7 +11,8 @@ const routes: Routes = [
     path: '',
     component: LayoutPortalDefaultComponent,
     children: [
-      {path: '', loadChildren: './views/portal/home/home.module#HomeModule'}
+      {path: '', loadChildren: './views/portal/home/home.module#HomeModule'},
+      {path: 'archive', loadChildren: './views/portal/archive/archive.module#ArchiveModule'}
     ]
   },
   {
