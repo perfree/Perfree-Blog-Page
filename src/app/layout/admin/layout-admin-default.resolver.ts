@@ -21,7 +21,7 @@ export class LayoutAdminDefaultResolver implements Resolve<LayoutAdminDefaultCom
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    return this.httpUtil.pipGet('/getMenuByAccount').pipe(map((res: any) => {
+    return this.httpUtil.pipGet('/getAdminMenuByAccount').pipe(map((res: any) => {
       if (res.code === 200) {
         const url = state.url;
         let menus = res.data;
