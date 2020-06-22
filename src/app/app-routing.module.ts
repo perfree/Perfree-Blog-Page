@@ -24,7 +24,7 @@ const routes: Routes = [
     component: LayoutAdminDefaultComponent,
     children: [
       {path: 'console', loadChildren: './views/admin/console/console.module#ConsoleModule'},
-      /* {path: 'admin/user', loadChildren: './views/user/user.module#UserModule'}*/
+      {path: 'menus', loadChildren: './views/admin/menus/menus.module#MenusModule'},
     ]
   },
   {path: 'passport', loadChildren: './views/public/passport/passport.module#PassportModule'},
