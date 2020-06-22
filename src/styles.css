@@ -4,3 +4,20 @@ body{
   overflow: auto;
   height: 100%;
 }
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 1px;
+}
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #b3b3b3;
+}
+body::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #d1d9e3;
+}
+::selection {
+  background: #344449;
+  color: #fff;
+  text-shadow: none;
+}

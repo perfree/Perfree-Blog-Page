@@ -17,15 +17,3 @@
   padding: 15px 15px 0px;
   width: calc(100% - 220px);
 }
-.content-box::-webkit-scrollbar {
-  width: 6px;
-  height: 1px;
-}
-.content-box::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: #9ea7b4;
-}
-.content-box::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background: #d7dde4;
-}
