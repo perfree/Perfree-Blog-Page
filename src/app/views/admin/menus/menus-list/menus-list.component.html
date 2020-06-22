@@ -1,1 +1,68 @@
-<p>menus-list works!</p>
+<div class="boot-press-container">
+  <!-- 搜索表单部分 -->
+  <div class="searchPanel">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">菜单名</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="menuName">
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button nzType="primary" class="queryBtn" (click)="searchData()" style="margin-top: 3px;">
+        <i nz-icon nzType="search"></i>查询
+      </button>
+    </form>
+  </div>
+
+  <!-- 表格部分 -->
+  <div class="dataPanel">
+    <nz-table #expandTable [nzData]="listOfMapData"
+              nzShowSizeChanger
+              nzBordered
+              [nzFrontPagination]="false"
+              [nzLoading]="loading"
+              [nzTotal]="total"
+              [(nzPageIndex)]="pageIndex"
+              [(nzPageSize)]="pageSize"
+              (nzPageIndexChange)="searchData()"
+              (nzPageSizeChange)="searchData()" >
+      <thead>
+      <tr>
+        <th>菜单名</th>
+        <th>图标</th>
+        <th>路径</th>
+        <th>序号</th>
+        <th>标识</th>
+        <th>打开方式</th>
+        <th>来源</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let data of expandTable.data">
+        <ng-container *ngFor="let item of mapOfExpandedData[data.id]">
+          <tr *ngIf="(item.parent && item.parent.expand) || !item.parent">
+            <td
+              [nzIndentSize]="item.level * 20"
+              [nzShowExpand]="item.childNodeList && item.childNodeList.length > 0 && item.status !== 0"
+              [(nzExpand)]="item.expand"
+              (nzExpandChange)="collapse(mapOfExpandedData[data.id], item, $event)"
+            >
+              {{item.menuName}}
+            </td>
+            <td>{{item.menuIcon}}</td>
+            <td>{{item.menuPath}}</td>
+            <td>{{item.seq}}</td>
+            <td>{{item.flag === 1 ? '前台' : '后台'}}</td>
+            <td>{{item.target}}</td>
+            <td>{{item.source === 0 ? '默认' : '用户添加'}}</td>
+            <td>{{item.status === 0 ? '正常' : '禁用'}}</td>
+            <td></td>
+          </tr>
+        </ng-container>
+      </ng-container>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
