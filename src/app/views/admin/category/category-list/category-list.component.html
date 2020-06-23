@@ -1,1 +1,58 @@
-<p>category-list works!</p>
+<div class="perfree-container">
+  <!-- 搜索表单部分 -->
+  <div class="searchPanel">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">类型</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <nz-select formControlName="type">
+            <nz-option nzValue="0" nzLabel="后台"></nz-option>
+            <nz-option nzValue="1" nzLabel="前台"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">菜单名</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="menuName">
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button nzType="primary" class="tableBtn queryBtn" (click)="searchData()">
+        <i nz-icon nzType="search"></i>查询
+      </button>
+    </form>
+  </div>
+
+  <div class="dataPanel">
+    <nz-table #ajaxTable
+              [nzLoading]="loading"
+              [nzTotal]="total"
+              [(nzPageIndex)]="pageIndex"
+              [(nzPageSize)]="pageSize"
+              (nzPageIndexChange)="searchData()"
+              nzBordered
+              (nzPageSizeChange)="searchData(true)" [nzData]="listOfData">
+      <thead>
+      <tr>
+        <th>序号</th>
+        <th>名称</th>
+        <th>图标</th>
+        <th>简介</th>
+        <th>创建时间</th>
+        <th>更新时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of ajaxTable.data let i = index">
+        <td>{{data.seq}}</td>
+        <td>{{data.categoryName}}</td>
+        <td>{{data.categoryIcon}}</td>
+        <td>{{data.categorySummary}}</td>
+        <td>{{data.createTime}}</td>
+        <td>{{data.updateTime}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+form .ant-select, form .ant-cascader-picker {
+  width: 100%;
+  min-width: 160px;
+}
+.dataPanel{
+  margin-top: 15px;
+}
+.addBtn{
+  background: #309462;
+  border: #309462;
+  margin-left: 10px;
+}
+.tableBtn{
+  margin-top: 3px;
+}
+.operatingBtn{
+  margin-left: 10px;
+}
