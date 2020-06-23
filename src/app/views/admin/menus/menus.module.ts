@@ -6,10 +6,11 @@ import { MenusListComponent } from './menus-list/menus-list.component';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MenusCreateComponent } from './menus-create/menus-create.component';
+import { MenusUpdateComponent } from './menus-update/menus-update.component';
 
 
 @NgModule({
-  declarations: [MenusListComponent, MenusCreateComponent],
+  declarations: [MenusListComponent, MenusCreateComponent, MenusUpdateComponent],
   imports: [
     CommonModule,
     NgZorroAntdModule,
@@ -18,7 +19,8 @@ import { MenusCreateComponent } from './menus-create/menus-create.component';
     ReactiveFormsModule
   ],
   entryComponents: [
-    MenusCreateComponent
+    MenusCreateComponent,
+    MenusUpdateComponent
   ]
 })
 export class MenusModule { }

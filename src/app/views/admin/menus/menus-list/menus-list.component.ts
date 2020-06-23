@@ -4,6 +4,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 import {HttpUtil} from '../../../../core/net/httpUtil';
 import {StorageUtil} from '../../../../core/storage/storageUtil';
 import {MenusCreateComponent} from '../menus-create/menus-create.component';
+import {MenusUpdateComponent} from '../menus-update/menus-update.component';
 
 export interface TreeNodeInterface {
   id: string;
@@ -53,6 +54,12 @@ export class MenusListComponent implements OnInit {
   isAddVisible = false;
   isAddOkLoading = false;
   addTitle = '添加一级菜单';
+
+  // 添加弹出框
+  @ViewChild('updateDom', { static: false, read: ViewContainerRef }) updateDom: ViewContainerRef;
+  public menuUpdateComponent;
+  isUpdateVisible = false;
+  isUpdateOkLoading = false;
 
   static visitNode(node: TreeNodeInterface, hashMap: { [key: string]: boolean }, array: TreeNodeInterface[]): void {
     if (!hashMap[node.id]) {
@@ -210,6 +217,44 @@ export class MenusListComponent implements OnInit {
         this.searchData();
       } else {
         this.message.error('状态更新失败');
+      }
+    });
+  }
+
+  /**
+   * 更新菜单
+   * @param item 信息
+   */
+  updateMenu(item) {
+    this.updateDom.clear();
+    const dom = this.cfr.resolveComponentFactory(MenusUpdateComponent);
+    this.menuUpdateComponent = this.updateDom.createComponent(dom);
+    this.menuUpdateComponent.instance.data = item;
+    this.isUpdateVisible = true;
+  }
+
+  /**
+   * 更新节点取消操作
+   */
+  updateHandleCancel() {
+    this.isUpdateVisible = false;
+    this.menuUpdateComponent.destroy();
+  }
+
+  /**
+   * 更新节点确定事件
+   */
+  updateHandleOk() {
+    const formValue = this.menuUpdateComponent.instance.getFormValue();
+    if (!formValue.isSuccess) {return; }
+    this.httpUtil.put('/menu/update', formValue.data).then(res => {
+      if (res.code === 200) {
+        this.message.success('更新成功');
+        this.searchData();
+        this.isUpdateVisible = false;
+        this.menuUpdateComponent.destroy();
+      } else {
+        this.message.error('更新失败');
       }
     });
   }

@@ -77,7 +77,7 @@
               <ng-container *ngIf="item.pid === -1">
                 <a class="operatingBtn" (click)="addMenu(false, item.id)">添加子菜单</a>
               </ng-container>
-              <a class="operatingBtn" (click)="addMenu(false, item.id)">编辑</a>
+              <a class="operatingBtn" (click)="updateMenu(item)">编辑</a>
               <ng-container *ngIf="item.status === 0">
                 <a class="operatingBtn" (click)="updateStatus(item.id, 1)">禁用</a>
               </ng-container>
@@ -102,4 +102,10 @@
 <nz-modal [(nzVisible)]="isAddVisible" [nzTitle]="addTitle" (nzOnCancel)="addHandleCancel()" (nzOnOk)="addHandleOk()"
           [nzOkLoading]="isAddOkLoading">
   <ng-container #addDom></ng-container>
+</nz-modal>
+
+<!-- 更新的弹出框 -->
+<nz-modal [(nzVisible)]="isUpdateVisible" [nzTitle]="'更新菜单'" (nzOnCancel)="updateHandleCancel()" (nzOnOk)="updateHandleOk()"
+          [nzOkLoading]="isUpdateOkLoading">
+  <ng-container #updateDom></ng-container>
 </nz-modal>
