@@ -50,7 +50,7 @@
         <td>{{data.categoryIcon}}</td>
         <td>{{data.categorySummary}}</td>
         <td>{{data.createTime}}</td>
-        <td>{{data.updateTime}}</td>
+        <td>{{data.updateTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
       </tr>
       </tbody>
     </nz-table>

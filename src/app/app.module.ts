@@ -15,7 +15,7 @@ import {HttpUtil} from './core/net/httpUtil';
 import {StorageUtil} from './core/storage/storageUtil';
 import {SubjectUtil} from './core/storage/subjectUtil';
 import {Kit} from './core/common/Kit';
-import {DatePipe} from '@angular/common';
+import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {DefaultInterceptor} from './core/net/default.Interceptor';
 import {LoginGuard} from './core/canActivate/loginGuard';
 import { LayoutPortalDefaultComponent } from './layout/portal/layout-portal-default/layout-portal-default.component';
@@ -54,6 +54,7 @@ import {SharedModule} from './shared/shared.module';
     SubjectUtil,
     Kit,
     DatePipe,
+    /*{provide: LocationStrategy, useClass: HashLocationStrategy},*/
     {provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true},
     LoginGuard,
     LayoutAdminDefaultResolver
