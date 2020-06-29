@@ -24,9 +24,9 @@ export class MenusCreateComponent implements OnInit {
     this.validateForm = this.fb.group({
       menuName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
       menuIcon: [null, [Validators.maxLength(15)]],
-      menuPath: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(32)]],
+      menuPath: [null, [Validators.maxLength(15)]],
       type: ['1', [Validators.required]],
-      target: ['_self', [Validators.required]],
+      target: ['_self'],
       seq: ['', [Validators.required]],
     });
   }
