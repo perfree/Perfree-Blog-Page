@@ -1,1 +1,43 @@
-<p>category-create works!</p>
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>分类名</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="分类名称应在1-15字之间">
+      <input nz-input formControlName="categoryName" placeholder="请输入分类名称" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">分类图标</nz-form-label>
+    <nz-form-control [nzSpan]="18">
+      <nz-upload
+        class="avatar-uploader"
+        [nzAction]="uploadUrl"
+        nzName="file"
+        nzListType="picture-card"
+        [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
+        [nzShowUploadList]="false"
+        (nzChange)="handleChange($event)"
+      >
+        <ng-container *ngIf="!avatarUrl">
+          <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+          <div class="ant-upload-text">Upload</div>
+        </ng-container>
+        <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+      </nz-upload>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">简介</nz-form-label>
+    <nz-form-control [nzSpan]="18">
+      <input nz-input formControlName="categorySummary" placeholder="请输入简介" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>排序</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请输入正确的序号">
+      <input nz-input formControlName="seq" placeholder="请输入排序" />
+    </nz-form-control>
+  </nz-form-item>
+
+</form>

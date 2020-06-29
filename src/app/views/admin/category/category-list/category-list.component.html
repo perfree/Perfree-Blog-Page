@@ -3,23 +3,17 @@
   <div class="searchPanel">
     <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm">
       <nz-form-item>
-        <nz-form-label [nzSpan]="6">类型</nz-form-label>
+        <nz-form-label [nzSpan]="6">分类名</nz-form-label>
         <nz-form-control [nzSpan]="18">
-          <nz-select formControlName="type">
-            <nz-option nzValue="0" nzLabel="后台"></nz-option>
-            <nz-option nzValue="1" nzLabel="前台"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
-
-      <nz-form-item>
-        <nz-form-label [nzSpan]="6">菜单名</nz-form-label>
-        <nz-form-control [nzSpan]="18">
-          <input nz-input formControlName="menuName">
+          <input nz-input formControlName="categoryName">
         </nz-form-control>
       </nz-form-item>
       <button nz-button nzType="primary" class="tableBtn queryBtn" (click)="searchData()">
         <i nz-icon nzType="search"></i>查询
+      </button>
+
+      <button nz-button nzType="primary" class="tableBtn addBtn" (click)="addCategory()">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>添加分类
       </button>
     </form>
   </div>
@@ -41,18 +35,36 @@
         <th>简介</th>
         <th>创建时间</th>
         <th>更新时间</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of ajaxTable.data let i = index">
         <td>{{data.seq}}</td>
         <td>{{data.categoryName}}</td>
-        <td>{{data.categoryIcon}}</td>
+        <td><img [src]="'http://127.0.0.1:8080' + data.categoryIcon" width="40px" height="40px"></td>
         <td>{{data.categorySummary}}</td>
-        <td>{{data.createTime}}</td>
+        <td>{{data.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
         <td>{{data.updateTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>
+          <a class="operatingBtn" (click)="updateCategory(data)">编辑</a>
+          <a class="operatingBtn" (click)="deleteCategory(data)">删除</a>
+        </td>
       </tr>
       </tbody>
     </nz-table>
   </div>
 </div>
+
+
+<!-- 添加的弹出框 -->
+<nz-modal [(nzVisible)]="isAddVisible" [nzTitle]="'添加分类'" (nzOnCancel)="addHandleCancel()" (nzOnOk)="addHandleOk()"
+          [nzOkLoading]="isAddOkLoading">
+  <ng-container #addDom></ng-container>
+</nz-modal>
+
+<!-- 更新的弹出框 -->
+<nz-modal [(nzVisible)]="isUpdateVisible" [nzTitle]="'更新菜单'" (nzOnCancel)="updateHandleCancel()" (nzOnOk)="updateHandleOk()"
+          [nzOkLoading]="isUpdateOkLoading">
+  <ng-container #updateDom></ng-container>
+</nz-modal>
