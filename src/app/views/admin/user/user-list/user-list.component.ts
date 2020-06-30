@@ -118,10 +118,9 @@ export class UserListComponent implements OnInit {
    * 添加节点确定事件
    */
   addHandleOk() {
-    // console.log(this.templateCreateComponent.instance.listWatchResult);
     const formValue = this.userCreateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.post('/menu/add', formValue.data).then(res => {
+    this.httpUtil.post('/user/add', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('添加成功');
         this.searchData();
