@@ -13,6 +13,7 @@
   background: white;
   margin: 10px 10px 0;
   padding: 15px;
+  overflow-y: auto;
 }
 .trigger:hover {
   color: #1890ff;
@@ -44,4 +45,16 @@ nz-breadcrumb {
 :host /deep/ .ant-layout-footer {
   padding: 15px 20px;;
   text-align: center;
+}
+.ant-layout-content::-webkit-scrollbar {
+  width: 8px;
+  height: 1px;
+}
+.ant-layout-content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #b3b3b3;
+}
+.ant-layout-content::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #d1d9e3;
 }

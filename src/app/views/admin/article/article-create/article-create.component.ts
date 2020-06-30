@@ -4,6 +4,7 @@ import {EditorMarkdownComponent} from '../../../../shared/components/editor-mark
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpUtil} from '../../../../core/net/httpUtil';
 import {NzMessageService} from 'ng-zorro-antd';
+import {environment} from '../../../../../environments/environment';
 
 declare var editormd: any;
 @Component({
@@ -22,12 +23,18 @@ export class ArticleCreateComponent implements OnInit {
   markdown: string;
   @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
   validateForm: FormGroup;
+
+  loading = false;
+  avatarUrl?: string;
+  uploadUrl;
+  uploadFilePath;
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
     private msg: NzMessageService,
   ) {
-    this.config = new EditorConfig({height: '400px'});
+    this.uploadUrl = 'http://' + environment.SERVER_URL + '/upload/img';
+    this.config = new EditorConfig({height: '700px'});
     this.markdown = '测试内容';
     /*获取markdown编辑器内容
     console.log(this.editorMarkdownDom.getEditorMarkdownComponentValue());
@@ -36,7 +43,29 @@ export class ArticleCreateComponent implements OnInit {
 
   ngOnInit() {
     this.validateForm = this.fb.group({
-      categoryName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
+      articleTitle: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
+      categoryId: '',
+      tagId: '',
+      articleSummary: '',
+      keyword: '',
+      status: '',
+      isEncrypt: '',
+      thumbnailType: '',
+      isAllowComment: ''
     });
+  }
+
+  /**
+   * 上传改变事件
+   * @param info 信息
+   */
+  handleChange(info): void {
+    if (info.file.status === 'done') {
+      this.uploadFilePath = info.file.response.url;
+      this.avatarUrl = 'http://' + environment.SERVER_URL + info.file.response.url;
+      this.msg.success(`${info.file.name} 上传成功`);
+    } else if (info.file.status === 'error') {
+      this.msg.error(`${info.file.name} 上传失败`);
+    }
   }
 }
