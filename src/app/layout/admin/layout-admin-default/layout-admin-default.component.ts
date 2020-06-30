@@ -28,7 +28,7 @@ export class LayoutAdminDefaultComponent implements OnInit {
     let url = '';
     menus.forEach(menu => {
       if (menu.menuIsSelect) {
-        if (menu.childMenu.length > 0) {
+        if (menu.childMenu && menu.childMenu.length > 0) {
           url = this.switchUrl(menu.childMenu);
         } else {
           url = menu.menuPath;
@@ -38,6 +38,7 @@ export class LayoutAdminDefaultComponent implements OnInit {
     if (url === '') {
       if (menus[0].childMenu.length > 0) {
         url = menus[0].childMenu[0].menuPath;
+        menus[0].menuIsSelect = true;
         menus[0].childMenu[0].menuIsSelect = true;
       } else {
         url = menus[0].menuPath;

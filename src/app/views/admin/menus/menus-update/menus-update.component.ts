@@ -18,13 +18,14 @@ export class MenusUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
     // 初始化表单
     this.validateForm = this.fb.group({
-      menuName: [this.data.menuName, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
-      menuIcon: [this.data.menuIcon, [Validators.maxLength(15)]],
-      menuPath: [this.data.menuPath, [Validators.required, Validators.minLength(1), Validators.maxLength(32)]],
+      menuName: [this.data.menuName, [Validators.required, Validators.minLength(1), Validators.maxLength(64)]],
+      menuIcon: [this.data.menuIcon, [Validators.maxLength(64)]],
+      menuPath: [this.data.menuPath, [Validators.maxLength(64)]],
       type: [this.data.type, [Validators.required]],
-      target: [this.data.target, [Validators.required]],
+      target: [this.data.target],
       seq: [this.data.seq, [Validators.required]],
     });
     // 如果是系统默认的菜单,不允许修改路径和类型
@@ -49,6 +50,11 @@ export class MenusUpdateComponent implements OnInit {
       }
     }
     if (this.validateForm.valid) {
+      console.log(this.data);
+      if (this.data.source === 0) {
+        this.validateForm.value.menuPath = this.data.menuPath;
+        this.validateForm.value.type = this.data.type;
+      }
       this.validateForm.value.id = this.data.id;
       result.isSuccess = true;
       result.data = this.validateForm.value;

@@ -30,7 +30,7 @@ export class LayoutAdminDefaultResolver implements Resolve<LayoutAdminDefaultCom
         } else {
           if (menus.length > 0 && menus[0].childMenu.length > 0) {
             menus[0].menuIsSelect = true;
-            menus[0].childMenu[0] = true;
+            menus[0].childMenu[0].menuIsSelect = true;
           }
           if (menus.length > 0 && menus[0].childMenu.length <= 0) {
             menus[0].menuIsSelect = true;

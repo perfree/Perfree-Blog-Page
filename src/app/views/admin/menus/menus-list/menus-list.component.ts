@@ -109,7 +109,7 @@ export class MenusListComponent implements OnInit {
     }
     const param = {
       pageIndex: 1,
-      pageSize: 50,
+      pageSize: 30,
       form: null,
     };
     param.pageIndex = this.pageIndex;

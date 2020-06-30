@@ -1,21 +1,21 @@
 <form nz-form [nzLayout]="'horizontal'" [formGroup]="validateForm">
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>菜单名</nz-form-label>
-    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="菜单名称应在1-15字之间">
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="菜单名称应在1-64字之间">
       <input nz-input formControlName="menuName" placeholder="请输入菜单名称" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>菜单图标</nz-form-label>
-    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="菜单图标最多15字">
+    <nz-form-label [nzSpan]="4">菜单图标</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="菜单图标最多64字">
       <input nz-input formControlName="menuIcon" placeholder="请输入菜单图标" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>菜单路径</nz-form-label>
-    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="菜单路径应在1-32字之间">
+    <nz-form-label [nzSpan]="4">菜单路径</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="菜单路径最多64字">
       <input nz-input formControlName="menuPath" placeholder="请输入菜单路径" />
     </nz-form-control>
   </nz-form-item>
@@ -24,14 +24,14 @@
     <nz-form-label [nzSpan]="4" nzRequired>菜单类型</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请选择菜单类型">
       <nz-select formControlName="type" nzPlaceHolder="请选择菜单类型">
-        <nz-option nzValue="0" nzLabel="后台"></nz-option>
-        <nz-option nzValue="1" nzLabel="前台"></nz-option>
+        <nz-option [nzValue]="0" nzLabel="后台"></nz-option>
+        <nz-option [nzValue]="1" nzLabel="前台"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
-    <nz-form-label [nzSpan]="4" nzRequired>打开方式</nz-form-label>
+    <nz-form-label [nzSpan]="4">打开方式</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请选择打开方式">
       <nz-select formControlName="target" nzPlaceHolder="请选择打开方式">
         <nz-option nzValue="_self" nzLabel="当前页打开"></nz-option>
