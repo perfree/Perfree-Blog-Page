@@ -42,6 +42,7 @@ export class UserListComponent implements OnInit {
     private cfr: ComponentFactoryResolver,
     private message: NzMessageService
   ) { }
+  user: UserInterface;
   pageIndex = 1;
   pageSize = 50;
   total = 1;
@@ -63,6 +64,11 @@ export class UserListComponent implements OnInit {
   isUpdateOkLoading = false;
 
   ngOnInit() {
+    this.httpUtil.get('/getUserInfo').then(res => {
+      if (res.code === 200) {
+        this.user = res.data;
+      }
+    });
     // 初始化表单
     this.validateForm = this.fb.group({
       status: '0',
@@ -107,7 +113,7 @@ export class UserListComponent implements OnInit {
   }
 
   /**
-   * 添加节点取消操作
+   * 添加用户取消操作
    */
   addHandleCancel() {
     this.isAddVisible = false;
@@ -115,13 +121,12 @@ export class UserListComponent implements OnInit {
   }
 
   /**
-   * 添加节点确定事件
+   * 添加用户确定事件
    */
   addHandleOk() {
-    // console.log(this.templateCreateComponent.instance.listWatchResult);
     const formValue = this.userCreateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.post('/menu/add', formValue.data).then(res => {
+    this.httpUtil.post('/user/add', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('添加成功');
         this.searchData();
@@ -134,10 +139,14 @@ export class UserListComponent implements OnInit {
   }
 
   /**
-   * 删除菜单
+   * 删除用户
    */
   delete(id) {
-    this.httpUtil.delete('/menu/delete/' + id).then(res => {
+    if (this.user.id === id) {
+      this.message.error('删除失败');
+      return;
+    }
+    this.httpUtil.delete('/user/delete/' + id).then(res => {
       if (res.code === 200) {
         this.message.success('删除成功');
         this.searchData();
@@ -153,7 +162,7 @@ export class UserListComponent implements OnInit {
    * @param status 状态
    */
   updateStatus(id, status) {
-    this.httpUtil.put('/menu/updateStatus', {id, status}).then(res => {
+    this.httpUtil.put('/user/updateStatus', {id, status}).then(res => {
       if (res.code === 200) {
         this.message.success('状态更新成功');
         this.searchData();
@@ -164,7 +173,7 @@ export class UserListComponent implements OnInit {
   }
 
   /**
-   * 更新菜单
+   * 更新用户
    * @param item 信息
    */
   updateMenu(item) {
@@ -176,7 +185,7 @@ export class UserListComponent implements OnInit {
   }
 
   /**
-   * 更新节点取消操作
+   * 更新用户取消操作
    */
   updateHandleCancel() {
     this.isUpdateVisible = false;
@@ -184,12 +193,12 @@ export class UserListComponent implements OnInit {
   }
 
   /**
-   * 更新节点确定事件
+   * 更新用户确定事件
    */
   updateHandleOk() {
     const formValue = this.userUpdateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.put('/menu/update', formValue.data).then(res => {
+    this.httpUtil.put('/user/update', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('更新成功');
         this.searchData();

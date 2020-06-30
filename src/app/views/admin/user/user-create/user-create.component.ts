@@ -20,12 +20,13 @@ export class UserCreateComponent implements OnInit {
   ngOnInit() {
     // 初始化表单
     this.validateForm = this.fb.group({
-      menuName: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
-      menuIcon: [null, [Validators.maxLength(15)]],
-      menuPath: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(32)]],
-      type: ['1', [Validators.required]],
-      target: ['_self', [Validators.required]],
-      seq: ['', [Validators.required]],
+      name: [null, [Validators.required, Validators.minLength(2), Validators.maxLength(6)]],
+      account: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
+      password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(12)]],
+      email: [null, [Validators.required, Validators.email]],
+      sex: [null, [Validators.required]],
+      age: [null, [Validators.required, Validators.min(0), Validators.max(150)]],
+      roles: [null, [Validators.required]],
     });
   }
 
@@ -43,6 +44,9 @@ export class UserCreateComponent implements OnInit {
         this.validateForm.controls[i].updateValueAndValidity();
       }
     }
+    const role = [];
+    role.push({id: this.validateForm.value.roles});
+    this.validateForm.value.roles = role;
     if (this.validateForm.valid) {
       result.isSuccess = true;
       result.data = this.validateForm.value;

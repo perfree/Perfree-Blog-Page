@@ -2,35 +2,35 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>姓名</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="姓名应在2-6字之间">
-      <input nz-input formControlName="menuName" placeholder="请输入姓名" />
+      <input nz-input formControlName="name" placeholder="请输入姓名" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>登录账号</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="登录账号应在6-12字之间">
-      <input nz-input formControlName="menuIcon" placeholder="请输入登录账号" />
+      <input nz-input formControlName="account" placeholder="请输入登录账号" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>登录密码</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="登录密码应在6-12字之间">
-      <input nz-input formControlName="menuPath" placeholder="请输入登录密码" />
+      <input nz-input type="password" formControlName="password" placeholder="请输入登录密码" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>电子邮箱</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请输入正确的电子邮箱">
-      <input nz-input formControlName="menuPath" placeholder="请输入电子邮箱" />
+      <input nz-input formControlName="email" placeholder="请输入电子邮箱" />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>性别</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请选择性别">
-      <nz-select formControlName="target" nzPlaceHolder="请选择性别">
+      <nz-select formControlName="sex" nzPlaceHolder="请选择性别">
         <nz-option nzValue="0" nzLabel="女"></nz-option>
         <nz-option nzValue="1" nzLabel="男"></nz-option>
       </nz-select>
@@ -40,7 +40,17 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4" nzRequired>年龄</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请输入正确的年龄">
-      <input nz-input formControlName="seq" placeholder="请输入年龄" />
+      <input nz-input type="number" formControlName="age" placeholder="请输入年龄" />
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>角色</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请选择角色">
+      <nz-select formControlName="roles" nzPlaceHolder="请选择角色">
+        <nz-option nzValue="1" nzLabel="超级管理员"></nz-option>
+        <nz-option nzValue="2" nzLabel="管理员"></nz-option>
+        <nz-option nzValue="3" nzLabel="用户"></nz-option>
+      </nz-select>
     </nz-form-control>
   </nz-form-item>
 </form>
