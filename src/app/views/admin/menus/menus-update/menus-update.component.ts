@@ -18,6 +18,7 @@ export class MenusUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
     // 初始化表单
     this.validateForm = this.fb.group({
       menuName: [this.data.menuName, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],

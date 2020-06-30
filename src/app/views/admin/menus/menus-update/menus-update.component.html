@@ -24,8 +24,8 @@
     <nz-form-label [nzSpan]="4" nzRequired>菜单类型</nz-form-label>
     <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="请选择菜单类型">
       <nz-select formControlName="type" nzPlaceHolder="请选择菜单类型">
-        <nz-option nzValue="0" nzLabel="后台"></nz-option>
-        <nz-option nzValue="1" nzLabel="前台"></nz-option>
+        <nz-option [nzValue]="0" nzLabel="后台"></nz-option>
+        <nz-option [nzValue]="1" nzLabel="前台"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>
