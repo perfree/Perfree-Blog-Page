@@ -22,7 +22,7 @@
         <nz-form-item>
           <nz-form-label>分类</nz-form-label>
           <nz-form-control nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
-            <nz-select formControlName="categoryId" nzShowSearch nzAllowClear nzPlaceHolder="Select a person">
+            <nz-select formControlName="categoryId" nzShowSearch nzAllowClear nzPlaceHolder="请选择分类">
               <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
               <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
               <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
@@ -33,7 +33,7 @@
         <nz-form-item>
           <nz-form-label>标签</nz-form-label>
           <nz-form-control nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
-            <nz-select nzMode="tags" nzPlaceHolder="Please select" formControlName="tagId">
+            <nz-select nzMode="tags" nzPlaceHolder="请选择标签" formControlName="tagId">
               <nz-option [nzLabel]="1" [nzValue]="1"></nz-option>
               <nz-option [nzLabel]="2" [nzValue]="2"></nz-option>
             </nz-select>
@@ -42,21 +42,21 @@
 
         <nz-form-item>
           <nz-form-label>摘要</nz-form-label>
-          <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
-            <input nz-input formControlName="articleSummary" placeholder="请输入文章标题"/>
+          <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章摘要应在1-200字之间">
+            <input nz-input formControlName="articleSummary" placeholder="请输入文章摘要"/>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label>关键字</nz-form-label>
-          <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
-            <input nz-input formControlName="keyword" placeholder="请输入文章标题"/>
+          <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="关键字应在1-200字之间">
+            <input nz-input formControlName="keyword" placeholder="请输入文章关键字"/>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label nzSpan="4">是否置顶</nz-form-label>
-          <nz-form-control nzSpan="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <nz-form-control nzSpan="18">
             <nz-radio-group formControlName="status">
               <label nz-radio nzValue="A">置顶</label>
               <label nz-radio nzValue="B">不置顶</label>
@@ -66,7 +66,7 @@
 
         <nz-form-item>
           <nz-form-label nzSpan="4">是否加密</nz-form-label>
-          <nz-form-control nzSpan="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <nz-form-control nzSpan="18">
             <nz-radio-group formControlName="isEncrypt">
               <label nz-radio nzValue="A">加密</label>
               <label nz-radio nzValue="B">不加密</label>
@@ -76,7 +76,7 @@
 
         <nz-form-item>
           <nz-form-label nzSpan="4">允许评论</nz-form-label>
-          <nz-form-control nzSpan="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <nz-form-control nzSpan="18">
             <nz-radio-group formControlName="isAllowComment">
               <label nz-radio nzValue="A">允许</label>
               <label nz-radio nzValue="B">不允许</label>
@@ -86,7 +86,7 @@
 
         <nz-form-item>
           <nz-form-label nzSpan="5">封面图类型</nz-form-label>
-          <nz-form-control nzSpan="17" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <nz-form-control nzSpan="17">
             <nz-radio-group formControlName="thumbnailType">
               <label nz-radio nzValue="A">随机</label>
               <label nz-radio nzValue="B">大图</label>

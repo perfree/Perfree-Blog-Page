@@ -44,14 +44,14 @@ export class ArticleCreateComponent implements OnInit {
   ngOnInit() {
     this.validateForm = this.fb.group({
       articleTitle: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
-      categoryId: '',
-      tagId: '',
-      articleSummary: '',
-      keyword: '',
-      status: '',
-      isEncrypt: '',
-      thumbnailType: '',
-      isAllowComment: ''
+      categoryId: null,
+      tagId: null,
+      articleSummary: null,
+      keyword: null,
+      status: null,
+      isEncrypt: null,
+      thumbnailType: null,
+      isAllowComment: null
     });
   }
 

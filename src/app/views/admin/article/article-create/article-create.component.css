@@ -28,6 +28,6 @@
 .push-article{
   margin-left: 15px;
 }
-.ant-form-item-label,.ant-form-item-control{
-  line-height: 30px;
+.ant-form-item-label,:host /deep/ .ant-form-item-control{
+  line-height: 35px;
 }
