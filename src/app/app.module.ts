@@ -35,7 +35,7 @@ import {SharedModule} from './shared/shared.module';
     LayoutPortalHeaderComponent,
     LayoutPortalAsideComponent,
     LayoutPortalContentAsideComponent,
-    LayoutPortalFooterComponent
+    LayoutPortalFooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +44,8 @@ import {SharedModule} from './shared/shared.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    AppRoutingModule,
-    SharedModule
+    SharedModule,
+    AppRoutingModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: zh_CN},
@@ -58,6 +58,8 @@ import {SharedModule} from './shared/shared.module';
     {provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true},
     LoginGuard,
     LayoutAdminDefaultResolver
+  ],
+  exports: [
   ],
   bootstrap: [AppComponent]
 })

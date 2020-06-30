@@ -5,20 +5,27 @@ import { HotArticleComponent } from './components/hot-article/hot-article.compon
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import { WebsiteInfoComponent } from './components/website-info/website-info.component';
 import { TagComponent } from './components/tag/tag.component';
+import { EditorMarkdownComponent } from './components/editor-markdown/editor-markdown.component';
+import {AppModule} from '../app.module';
+import {ReactiveFormsModule} from '@angular/forms';
+import {EditorMdDirective} from './directive/EditorMdDirective';
 
 
 
 @NgModule({
-  declarations: [VerifyCodeComponent, HotArticleComponent, WebsiteInfoComponent, TagComponent],
+  declarations: [VerifyCodeComponent, HotArticleComponent, WebsiteInfoComponent, TagComponent, EditorMarkdownComponent, EditorMdDirective],
   exports: [
     VerifyCodeComponent,
     HotArticleComponent,
     WebsiteInfoComponent,
-    TagComponent
+    TagComponent,
+    EditorMdDirective,
+    EditorMarkdownComponent
   ],
   imports: [
     NgZorroAntdModule,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

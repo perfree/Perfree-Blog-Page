@@ -5,6 +5,7 @@ import { ArticleRoutingModule } from './article-routing.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule} from '@angular/forms';
 import { ArticleCreateComponent } from './article-create/article-create.component';
+import {SharedModule} from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ArticleCreateComponent } from './article-create/article-create.componen
     CommonModule,
     NgZorroAntdModule,
     FormsModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    SharedModule,
   ]
 })
 export class ArticleModule { }
