@@ -21,9 +21,9 @@ export class MenusUpdateComponent implements OnInit {
     console.log(this.data);
     // 初始化表单
     this.validateForm = this.fb.group({
-      menuName: [this.data.menuName, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
-      menuIcon: [this.data.menuIcon, [Validators.maxLength(15)]],
-      menuPath: [this.data.menuPath, [Validators.maxLength(15)]],
+      menuName: [this.data.menuName, [Validators.required, Validators.minLength(1), Validators.maxLength(64)]],
+      menuIcon: [this.data.menuIcon, [Validators.maxLength(64)]],
+      menuPath: [this.data.menuPath, [Validators.maxLength(64)]],
       type: [this.data.type, [Validators.required]],
       target: [this.data.target],
       seq: [this.data.seq, [Validators.required]],
