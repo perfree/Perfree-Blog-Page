@@ -54,7 +54,8 @@
               "src/theme.less",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
