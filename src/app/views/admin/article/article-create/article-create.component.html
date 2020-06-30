@@ -1,2 +1,15 @@
-<app-editor-markdown [conf]="config" [oldMarkdownContents]="markdown" #editorMarkdownDom></app-editor-markdown>
+<div nz-row class="create-article-box">
+  <form nz-form [nzLayout]="'horizontal'" [formGroup]="validateForm">
+    <div nz-col nzXs="24" nzSm="24" nzMd="14" nzLg="18" nzXl="18" class="left-create-article">
+      <nz-form-item>
+        <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <input nz-input formControlName="categoryName" placeholder="请输入文章标题" />
+        </nz-form-control>
+      </nz-form-item>
+      <app-editor-markdown [conf]="config" [oldMarkdownContents]="markdown" #editorMarkdownDom></app-editor-markdown>
+    </div>
+    <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="6" nzXl="6">
 
+    </div>
+  </form>
+</div>

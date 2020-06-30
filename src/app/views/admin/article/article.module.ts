@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ArticleRoutingModule } from './article-routing.module';
 import {NgZorroAntdModule} from 'ng-zorro-antd';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ArticleCreateComponent } from './article-create/article-create.component';
 import {SharedModule} from '../../../shared/shared.module';
 
@@ -16,6 +16,7 @@ import {SharedModule} from '../../../shared/shared.module';
     FormsModule,
     ArticleRoutingModule,
     SharedModule,
+    ReactiveFormsModule,
   ]
 })
 export class ArticleModule { }

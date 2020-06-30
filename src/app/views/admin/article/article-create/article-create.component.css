@@ -1,0 +1,12 @@
+.ant-input{
+  height: 40px;
+}
+.left-create-article{
+  border-right: 1px dashed;
+  padding-right: 10px;
+  height: 100%;
+  border-color: #dddddd;
+}
+.ant-form,.create-article-box{
+  height: 100%;
+}
