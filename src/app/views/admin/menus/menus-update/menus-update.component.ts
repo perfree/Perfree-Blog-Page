@@ -50,6 +50,11 @@ export class MenusUpdateComponent implements OnInit {
       }
     }
     if (this.validateForm.valid) {
+      console.log(this.data);
+      if (this.data.source === 0) {
+        this.validateForm.value.menuPath = this.data.menuPath;
+        this.validateForm.value.type = this.data.type;
+      }
       this.validateForm.value.id = this.data.id;
       result.isSuccess = true;
       result.data = this.validateForm.value;
