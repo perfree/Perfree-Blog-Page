@@ -1,0 +1,8 @@
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>标签名</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="标签名称应在1-15字之间">
+      <input nz-input formControlName="tagName" placeholder="请输入标签名称" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
