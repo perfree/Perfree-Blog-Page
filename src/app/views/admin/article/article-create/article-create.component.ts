@@ -53,6 +53,7 @@ export class ArticleCreateComponent implements OnInit {
       thumbnailType: null,
       isAllowComment: null
     });
+    this.initCategory();
   }
 
   /**
@@ -67,5 +68,14 @@ export class ArticleCreateComponent implements OnInit {
     } else if (info.file.status === 'error') {
       this.msg.error(`${info.file.name} 上传失败`);
     }
+  }
+
+  /**
+   * 加载分类
+   */
+  initCategory() {
+    this.httpUtil.get('/category/all').then(res => {
+      console.log(res);
+    });
   }
 }
