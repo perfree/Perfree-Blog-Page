@@ -25,8 +25,7 @@ const routes: Routes = [
     children: [
       {path: 'console', loadChildren: './views/admin/console/console.module#ConsoleModule'},
       {path: 'menus', loadChildren: './views/admin/menus/menus.module#MenusModule'},
-      {path: 'category', loadChildren: './views/admin/category/category.module#CategoryModule'},
-      {path: 'article', loadChildren: './views/admin/article/article.module#ArticleModule'},
+      {path: 'user', loadChildren: './views/admin/user/user.module#UserModule'},
     ]
   },
   {path: 'passport', loadChildren: './views/public/passport/passport.module#PassportModule'},
