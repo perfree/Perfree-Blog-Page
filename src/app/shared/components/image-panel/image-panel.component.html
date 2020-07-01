@@ -1,1 +1,28 @@
-<p>image-panel works!</p>
+<nz-tabset>
+  <nz-tab nzTitle="图片上传">
+    <nz-upload
+      class="avatar-uploader"
+      [nzAction]="uploadUrl"
+      nzName="file"
+      nzListType="picture-card"
+      [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
+      [nzShowUploadList]="false"
+      (nzChange)="handleChange($event)"
+    >
+      <ng-container *ngIf="!avatarUrl">
+        <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+        <div class="ant-upload-text">上传图片</div>
+      </ng-container>
+      <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+    </nz-upload>
+  </nz-tab>
+
+  <nz-tab nzTitle="图片库">
+    <div class="imageList">
+
+    </div>
+    <nz-pagination [nzTotal]="imageListTotal"
+        [(nzPageIndex)]="pageIndex"
+        [(nzPageSize)]="pageSize"></nz-pagination>
+  </nz-tab>
+</nz-tabset>

@@ -1,0 +1,8 @@
+:host /deep/ .ant-upload{
+  width: 100%;
+  height: 300px;
+}
+.imageList{
+  width: 100%;
+  min-height: 300px;
+}
