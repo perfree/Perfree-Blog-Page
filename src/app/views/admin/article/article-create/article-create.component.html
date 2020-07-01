@@ -21,21 +21,18 @@
       <div>
         <nz-form-item>
           <nz-form-label>分类</nz-form-label>
-          <nz-form-control nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <nz-form-control>
             <nz-select formControlName="categoryId" nzShowSearch nzAllowClear nzPlaceHolder="请选择分类">
-              <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-              <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-              <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+              <nz-option *ngFor="let o of categoryList" [nzLabel]="o.categoryName" [nzValue]="o.id"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
           <nz-form-label>标签</nz-form-label>
-          <nz-form-control nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="文章标题应在1-200字之间">
+          <nz-form-control>
             <nz-select nzMode="tags" nzPlaceHolder="请选择标签" formControlName="tagId">
-              <nz-option [nzLabel]="1" [nzValue]="1"></nz-option>
-              <nz-option [nzLabel]="2" [nzValue]="2"></nz-option>
+              <nz-option *ngFor="let o of tagList" [nzLabel]="o.tagName" [nzValue]="o.id"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
@@ -55,11 +52,12 @@
         </nz-form-item>
 
         <nz-form-item>
-          <nz-form-label nzSpan="4">是否置顶</nz-form-label>
+          <nz-form-label nzSpan="4">文章状态</nz-form-label>
           <nz-form-control nzSpan="18">
             <nz-radio-group formControlName="status">
-              <label nz-radio nzValue="A">置顶</label>
-              <label nz-radio nzValue="B">不置顶</label>
+              <label nz-radio [nzValue]="0">正常</label>
+              <label nz-radio [nzValue]="1">隐藏</label>
+              <label nz-radio [nzValue]="2">置顶</label>
             </nz-radio-group>
           </nz-form-control>
         </nz-form-item>
@@ -67,10 +65,17 @@
         <nz-form-item>
           <nz-form-label nzSpan="4">是否加密</nz-form-label>
           <nz-form-control nzSpan="18">
-            <nz-radio-group formControlName="isEncrypt">
-              <label nz-radio nzValue="A">加密</label>
-              <label nz-radio nzValue="B">不加密</label>
+            <nz-radio-group formControlName="isEncrypt" (ngModelChange)="showPassword($event)">
+              <label nz-radio [nzValue]="0">不加密</label>
+              <label nz-radio [nzValue]="1">加密</label>
             </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item *ngIf="isShowPassword">
+          <nz-form-label>访问密码</nz-form-label>
+          <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="访问密码应在1-15字之间">
+            <input nz-input formControlName="password" placeholder="请输入访问密码"/>
           </nz-form-control>
         </nz-form-item>
 
@@ -78,8 +83,8 @@
           <nz-form-label nzSpan="4">允许评论</nz-form-label>
           <nz-form-control nzSpan="18">
             <nz-radio-group formControlName="isAllowComment">
-              <label nz-radio nzValue="A">允许</label>
-              <label nz-radio nzValue="B">不允许</label>
+              <label nz-radio [nzValue]="0">允许</label>
+              <label nz-radio [nzValue]="1">不允许</label>
             </nz-radio-group>
           </nz-form-control>
         </nz-form-item>
@@ -87,15 +92,15 @@
         <nz-form-item>
           <nz-form-label nzSpan="5">封面图类型</nz-form-label>
           <nz-form-control nzSpan="17">
-            <nz-radio-group formControlName="thumbnailType">
-              <label nz-radio nzValue="A">随机</label>
-              <label nz-radio nzValue="B">大图</label>
-              <label nz-radio nzValue="B">小图</label>
+            <nz-radio-group formControlName="thumbnailType" (ngModelChange)="showUploadThumbnail($event)">
+              <label nz-radio [nzValue]="0">随机</label>
+              <label nz-radio [nzValue]="1">大图</label>
+              <label nz-radio [nzValue]="2">小图</label>
             </nz-radio-group>
           </nz-form-control>
         </nz-form-item>
 
-        <nz-form-item>
+        <nz-form-item *ngIf="isShowUploadThumbnail">
           <nz-form-label>封面图:</nz-form-label>
           <nz-form-control>
             <nz-upload
@@ -107,11 +112,11 @@
               [nzShowUploadList]="false"
               (nzChange)="handleChange($event)"
             >
-              <ng-container *ngIf="!avatarUrl">
+              <ng-container *ngIf="!thumbnailUrl">
                 <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
-                <div class="ant-upload-text">Upload</div>
+                <div class="ant-upload-text">上传封面图</div>
               </ng-container>
-              <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+              <img *ngIf="thumbnailUrl" [src]="thumbnailUrl" style="width: 100%" />
             </nz-upload>
           </nz-form-control>
         </nz-form-item>

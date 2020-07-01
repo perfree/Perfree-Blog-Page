@@ -25,9 +25,14 @@ export class ArticleCreateComponent implements OnInit {
   validateForm: FormGroup;
 
   loading = false;
-  avatarUrl?: string;
+  thumbnailUrl?: string;
   uploadUrl;
   uploadFilePath;
+
+  categoryList = [];
+  tagList = [];
+  isShowPassword = false;
+  isShowUploadThumbnail = false;
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
@@ -48,12 +53,14 @@ export class ArticleCreateComponent implements OnInit {
       tagId: null,
       articleSummary: null,
       keyword: null,
-      status: null,
-      isEncrypt: null,
-      thumbnailType: null,
-      isAllowComment: null
+      status: [0],
+      isEncrypt: [0],
+      password: [null],
+      thumbnailType: [0],
+      isAllowComment: [0]
     });
     this.initCategory();
+    this.initTag();
   }
 
   /**
@@ -63,7 +70,7 @@ export class ArticleCreateComponent implements OnInit {
   handleChange(info): void {
     if (info.file.status === 'done') {
       this.uploadFilePath = info.file.response.url;
-      this.avatarUrl = 'http://' + environment.SERVER_URL + info.file.response.url;
+      this.thumbnailUrl = 'http://' + environment.SERVER_URL + info.file.response.url;
       this.msg.success(`${info.file.name} 上传成功`);
     } else if (info.file.status === 'error') {
       this.msg.error(`${info.file.name} 上传失败`);
@@ -75,7 +82,36 @@ export class ArticleCreateComponent implements OnInit {
    */
   initCategory() {
     this.httpUtil.get('/category/all').then(res => {
-      console.log(res);
+      this.categoryList = res.data;
     });
+  }
+
+  /**
+   * 初始化标签
+   */
+  initTag() {
+    this.httpUtil.get('/tag/all').then(res => {
+      this.tagList = res.data;
+    });
+  }
+
+  /**
+   * 显示密码框
+   */
+  showPassword(e) {
+   if (e === 0) {
+     this.isShowPassword = false;
+   } else {
+     this.isShowPassword = true;
+     this.validateForm.get('password').setValidators([Validators.required, Validators.minLength(1), Validators.maxLength(15)]);
+   }
+  }
+
+  /**
+   * 显示封面图上传
+   * @param e 值
+   */
+  showUploadThumbnail(e) {
+    this.isShowUploadThumbnail = e !== 0;
   }
 }
