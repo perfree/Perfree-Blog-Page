@@ -20,6 +20,8 @@ export class ImagePanelComponent implements OnInit {
   pageSize = 20;
   imageListTotal = 1;
   listOfData = [];
+
+  serverUrl;
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
@@ -27,6 +29,7 @@ export class ImagePanelComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.serverUrl = 'http://' + environment.SERVER_URL;
     this.uploadUrl = 'http://' + environment.SERVER_URL + '/upload/img';
     this.searchData(true);
   }

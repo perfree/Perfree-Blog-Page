@@ -19,7 +19,11 @@
 
   <nz-tab nzTitle="图片库">
     <div class="imageList">
-
+      <ng-container *ngFor="let o of listOfData">
+        <div class="imageBox">
+          <img [src]="serverUrl + o.filePath" class="image">
+        </div>
+      </ng-container>
     </div>
     <nz-pagination [nzTotal]="imageListTotal"
         [(nzPageIndex)]="pageIndex"
