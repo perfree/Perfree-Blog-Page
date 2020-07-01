@@ -1,10 +1,12 @@
-import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {EditorConfig} from '../../../../shared/components/editor-markdown/editor-config';
 import {EditorMarkdownComponent} from '../../../../shared/components/editor-markdown/editor-markdown.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpUtil} from '../../../../core/net/httpUtil';
 import {NzMessageService} from 'ng-zorro-antd';
-import {environment} from '../../../../../environments/environment';
+import {CategoryCreateComponent} from '../../category/category-create/category-create.component';
+import {StorageUtil} from '../../../../core/storage/storageUtil';
+import {ImagePanelComponent} from '../../../../shared/components/image-panel/image-panel.component';
 
 declare var editormd: any;
 @Component({
@@ -24,10 +26,10 @@ export class ArticleCreateComponent implements OnInit {
   @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
   validateForm: FormGroup;
 
-  loading = false;
-  thumbnailUrl?: string;
-  uploadUrl;
-  uploadFilePath;
+  // 选择图片的弹出框
+  @ViewChild('imagePanel', { static: false, read: ViewContainerRef }) imagePanel: ViewContainerRef;
+  public imagePanelComponent;
+  isImagePanelVisible = false;
 
   categoryList = [];
   tagList = [];
@@ -36,9 +38,10 @@ export class ArticleCreateComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
-    private msg: NzMessageService,
+    public storageUtil: StorageUtil,
+    private cfr: ComponentFactoryResolver,
+    private message: NzMessageService
   ) {
-    this.uploadUrl = 'http://' + environment.SERVER_URL + '/upload/img';
     this.config = new EditorConfig({height: '700px'});
     this.markdown = '测试内容';
     /*获取markdown编辑器内容
@@ -61,20 +64,6 @@ export class ArticleCreateComponent implements OnInit {
     });
     this.initCategory();
     this.initTag();
-  }
-
-  /**
-   * 上传改变事件
-   * @param info 信息
-   */
-  handleChange(info): void {
-    if (info.file.status === 'done') {
-      this.uploadFilePath = info.file.response.url;
-      this.thumbnailUrl = 'http://' + environment.SERVER_URL + info.file.response.url;
-      this.msg.success(`${info.file.name} 上传成功`);
-    } else if (info.file.status === 'error') {
-      this.msg.error(`${info.file.name} 上传失败`);
-    }
   }
 
   /**
@@ -113,5 +102,31 @@ export class ArticleCreateComponent implements OnInit {
    */
   showUploadThumbnail(e) {
     this.isShowUploadThumbnail = e !== 0;
+  }
+
+  /**
+   * 选择图片
+   */
+  selectImg() {
+    this.imagePanel.clear();
+    const dom = this.cfr.resolveComponentFactory(ImagePanelComponent);
+    this.imagePanelComponent = this.imagePanel.createComponent(dom);
+    this.isImagePanelVisible = true;
+  }
+
+  /**
+   * 图片面板取消
+   */
+  imagePanelHandleCancel() {
+    this.isImagePanelVisible = false;
+    this.imagePanelComponent.destroy();
+  }
+
+  /**
+   * 图片面板选中确定事件
+   */
+  imagePanelHandleOk() {
+    this.isImagePanelVisible = false;
+    this.imagePanelComponent.destroy();
   }
 }

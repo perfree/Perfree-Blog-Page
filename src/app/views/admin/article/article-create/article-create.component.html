@@ -103,24 +103,16 @@
         <nz-form-item *ngIf="isShowUploadThumbnail">
           <nz-form-label>封面图:</nz-form-label>
           <nz-form-control>
-            <nz-upload
-              class="avatar-uploader"
-              [nzAction]="uploadUrl"
-              nzName="file"
-              nzListType="picture-card"
-              [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
-              [nzShowUploadList]="false"
-              (nzChange)="handleChange($event)"
-            >
-              <ng-container *ngIf="!thumbnailUrl">
-                <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
-                <div class="ant-upload-text">上传封面图</div>
-              </ng-container>
-              <img *ngIf="thumbnailUrl" [src]="thumbnailUrl" style="width: 100%" />
-            </nz-upload>
+            <a (click)="selectImg()">选择图片</a>
           </nz-form-control>
         </nz-form-item>
       </div>
     </div>
   </form>
 </div>
+
+<!-- 图片选择的弹出框 -->
+<nz-modal [(nzVisible)]="isImagePanelVisible" [nzTitle]="'选择图片'" (nzOnCancel)="imagePanelHandleCancel()"
+          (nzOnOk)="imagePanelHandleOk()">
+  <ng-container #imagePanel></ng-container>
+</nz-modal>
