@@ -15,18 +15,26 @@
       </ng-container>
       <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
     </nz-upload>
+    <button nz-button nzType="primary" style="float: right;margin-left: 10px" (click)="selectUploadImg()">
+      确定
+    </button>
   </nz-tab>
 
-  <nz-tab nzTitle="图片库">
+  <nz-tab nzTitle="图片库" (nzSelect)="searchData(true)">
     <div class="imageList">
       <ng-container *ngFor="let o of listOfData">
-        <div class="imageBox">
+        <a class="imageBox" (click)="selectImg(o)">
           <img [src]="serverUrl + o.filePath" class="image">
-        </div>
+          <p class="imageName">{{o.fileName}}</p>
+        </a>
       </ng-container>
     </div>
-    <nz-pagination [nzTotal]="imageListTotal"
-        [(nzPageIndex)]="pageIndex"
-        [(nzPageSize)]="pageSize"></nz-pagination>
+    <div>
+      <nz-pagination [nzTotal]="imageListTotal"
+                     [(nzPageIndex)]="pageIndex"
+                     [(nzPageSize)]="pageSize"
+                     (nzPageIndexChange)="searchData()"
+                     (nzPageSizeChange)="searchData(true)"></nz-pagination>
+    </div>
   </nz-tab>
 </nz-tabset>

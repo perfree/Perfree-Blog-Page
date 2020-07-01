@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {HttpUtil} from '../../../core/net/httpUtil';
 import {NzMessageService} from 'ng-zorro-antd';
@@ -17,10 +17,12 @@ export class ImagePanelComponent implements OnInit {
 
   // 分页相关
   pageIndex = 1;
-  pageSize = 20;
+  pageSize = 6;
   imageListTotal = 1;
   listOfData = [];
-
+  uploadImg: any = null;
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() onSelectImg: EventEmitter<string> = new EventEmitter<string>();
   serverUrl;
   constructor(
     private fb: FormBuilder,
@@ -42,7 +44,7 @@ export class ImagePanelComponent implements OnInit {
     if (info.file.status === 'done') {
       this.uploadFilePath = info.file.response.url;
       this.avatarUrl = 'http://' + environment.SERVER_URL + info.file.response.url;
-      this.msg.success(`${info.file.name} 上传成功`);
+      this.uploadImg = info.file.response;
     } else if (info.file.status === 'error') {
       this.msg.error(`${info.file.name} 上传失败`);
     }
@@ -58,17 +60,33 @@ export class ImagePanelComponent implements OnInit {
     }
     const param = {
       pageIndex: 1,
-      pageSize: 20,
+      pageSize: 6,
       form: null,
     };
     param.pageIndex = this.pageIndex;
     param.pageSize = this.pageSize;
-    this.loading = true;
     this.httpUtil.post('/attach/imageList', param).then(res => {
-      this.loading = false;
       this.imageListTotal = res.total;
       this.listOfData = res.data;
     });
   }
 
+  /**
+   * 选中图片
+   * @param data 数据
+   */
+  selectImg(data) {
+    this.onSelectImg.emit(data);
+  }
+
+  /**
+   * 选中上传图片
+   */
+  selectUploadImg() {
+    if (this.uploadImg !== null && this.uploadImg !== '') {
+      this.onSelectImg.emit(this.uploadImg);
+    } else {
+      this.msg.error('请上传图片');
+    }
+  }
 }

@@ -111,6 +111,11 @@ export class ArticleCreateComponent implements OnInit {
     this.imagePanel.clear();
     const dom = this.cfr.resolveComponentFactory(ImagePanelComponent);
     this.imagePanelComponent = this.imagePanel.createComponent(dom);
+    this.imagePanelComponent.instance.onSelectImg.subscribe((res) => {
+      console.log(res);
+      this.isImagePanelVisible = false;
+      this.imagePanelComponent.destroy();
+    });
     this.isImagePanelVisible = true;
   }
 
@@ -118,14 +123,6 @@ export class ArticleCreateComponent implements OnInit {
    * 图片面板取消
    */
   imagePanelHandleCancel() {
-    this.isImagePanelVisible = false;
-    this.imagePanelComponent.destroy();
-  }
-
-  /**
-   * 图片面板选中确定事件
-   */
-  imagePanelHandleOk() {
     this.isImagePanelVisible = false;
     this.imagePanelComponent.destroy();
   }
