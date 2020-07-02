@@ -1,0 +1,22 @@
+<form nz-form [nzLayout]="'horizontal'" [formGroup]="validateForm">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>配置名</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
+      <input nz-input formControlName="key" placeholder="请输入配置名" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4" nzRequired>配置值</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置值应在128个字符内">
+      <input nz-input formControlName="value" placeholder="请输入配置值" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="4">备注</nz-form-label>
+    <nz-form-control [nzSpan]="18" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="备注应在255个字符内">
+      <input nz-input formControlName="remark" placeholder="请输入备注" />
+    </nz-form-control>
+  </nz-form-item>
+</form>
