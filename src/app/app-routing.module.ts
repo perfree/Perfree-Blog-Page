@@ -29,6 +29,8 @@ const routes: Routes = [
       {path: 'category', loadChildren: './views/admin/category/category.module#CategoryModule'},
       {path: 'article', loadChildren: './views/admin/article/article.module#ArticleModule'},
       {path: 'tag', loadChildren: './views/admin/tag/tag.module#TagModule'},
+      {path: 'comment', loadChildren: './views/admin/comment/comment.module#CommentModule'},
+      {path: 'option', loadChildren: './views/admin/option/option.module#OptionModule'},
     ]
   },
   {path: 'passport', loadChildren: './views/public/passport/passport.module#PassportModule'},
