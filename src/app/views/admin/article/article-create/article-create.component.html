@@ -103,16 +103,10 @@
         <nz-form-item *ngIf="isShowUploadThumbnail">
           <nz-form-label>封面图:</nz-form-label>
           <nz-form-control>
-            <a (click)="selectImg()">选择图片</a>
+            <app-select-image #selectImage></app-select-image>
           </nz-form-control>
         </nz-form-item>
       </div>
     </div>
   </form>
 </div>
-
-<!-- 图片选择的弹出框 -->
-<nz-modal [(nzVisible)]="isImagePanelVisible" (nzOnCancel)="imagePanelHandleCancel()"
-          [nzFooter]="null" [nzWidth]="684">
-  <ng-container #imagePanel></ng-container>
-</nz-modal>

@@ -8,7 +8,8 @@ import {TagComponent} from './components/tag/tag.component';
 import {EditorMarkdownComponent} from './components/editor-markdown/editor-markdown.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EditorMdDirective} from './directive/EditorMdDirective';
-import { ImagePanelComponent } from './components/image-panel/image-panel.component';
+import {ImagePanelComponent} from './components/image-panel/image-panel.component';
+import { SelectImageComponent } from './components/select-image/select-image.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ImagePanelComponent } from './components/image-panel/image-panel.compon
     TagComponent,
     EditorMarkdownComponent,
     EditorMdDirective,
-    ImagePanelComponent
+    ImagePanelComponent,
+    SelectImageComponent
   ],
   exports: [
     VerifyCodeComponent,
@@ -27,7 +29,8 @@ import { ImagePanelComponent } from './components/image-panel/image-panel.compon
     WebsiteInfoComponent,
     TagComponent,
     EditorMdDirective,
-    EditorMarkdownComponent
+    EditorMarkdownComponent,
+    SelectImageComponent
   ],
   imports: [
     NgZorroAntdModule,

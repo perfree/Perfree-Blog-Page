@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {LayoutAdminDefaultComponent} from './layout/admin/layout-admin-default/layout-admin-default.component';
 import {LayoutAdminHeaderComponent} from './layout/admin/layout-admin-header/layout-admin-header.component';
 import {LayoutAdminSideComponent} from './layout/admin/layout-admin-side/layout-admin-side.component';
@@ -15,15 +15,16 @@ import {HttpUtil} from './core/net/httpUtil';
 import {StorageUtil} from './core/storage/storageUtil';
 import {SubjectUtil} from './core/storage/subjectUtil';
 import {Kit} from './core/common/Kit';
-import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {DatePipe} from '@angular/common';
 import {DefaultInterceptor} from './core/net/default.Interceptor';
 import {LoginGuard} from './core/canActivate/loginGuard';
-import { LayoutPortalDefaultComponent } from './layout/portal/layout-portal-default/layout-portal-default.component';
-import { LayoutPortalHeaderComponent } from './layout/portal/layout-portal-header/layout-portal-header.component';
-import { LayoutPortalAsideComponent } from './layout/portal/layout-portal-aside/layout-portal-aside.component';
-import { LayoutPortalContentAsideComponent } from './layout/portal/layout-portal-content-aside/layout-portal-content-aside.component';
-import { LayoutPortalFooterComponent } from './layout/portal/layout-portal-footer/layout-portal-footer.component';
+import {LayoutPortalDefaultComponent} from './layout/portal/layout-portal-default/layout-portal-default.component';
+import {LayoutPortalHeaderComponent} from './layout/portal/layout-portal-header/layout-portal-header.component';
+import {LayoutPortalAsideComponent} from './layout/portal/layout-portal-aside/layout-portal-aside.component';
+import {LayoutPortalContentAsideComponent} from './layout/portal/layout-portal-content-aside/layout-portal-content-aside.component';
+import {LayoutPortalFooterComponent} from './layout/portal/layout-portal-footer/layout-portal-footer.component';
 import {SharedModule} from './shared/shared.module';
+import {LazyLoadImageModule} from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [

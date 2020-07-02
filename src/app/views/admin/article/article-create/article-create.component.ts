@@ -7,6 +7,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 import {CategoryCreateComponent} from '../../category/category-create/category-create.component';
 import {StorageUtil} from '../../../../core/storage/storageUtil';
 import {ImagePanelComponent} from '../../../../shared/components/image-panel/image-panel.component';
+import {SelectImageComponent} from '../../../../shared/components/select-image/select-image.component';
 
 declare var editormd: any;
 @Component({
@@ -26,15 +27,13 @@ export class ArticleCreateComponent implements OnInit {
   @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
   validateForm: FormGroup;
 
-  // 选择图片的弹出框
-  @ViewChild('imagePanel', { static: false, read: ViewContainerRef }) imagePanel: ViewContainerRef;
-  public imagePanelComponent;
-  isImagePanelVisible = false;
-
   categoryList = [];
   tagList = [];
   isShowPassword = false;
   isShowUploadThumbnail = false;
+
+  // 选择图片
+  @ViewChild('selectImage', { static: false}) selectImage: SelectImageComponent;
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
@@ -102,28 +101,5 @@ export class ArticleCreateComponent implements OnInit {
    */
   showUploadThumbnail(e) {
     this.isShowUploadThumbnail = e !== 0;
-  }
-
-  /**
-   * 选择图片
-   */
-  selectImg() {
-    this.imagePanel.clear();
-    const dom = this.cfr.resolveComponentFactory(ImagePanelComponent);
-    this.imagePanelComponent = this.imagePanel.createComponent(dom);
-    this.imagePanelComponent.instance.onSelectImg.subscribe((res) => {
-      console.log(res);
-      this.isImagePanelVisible = false;
-      this.imagePanelComponent.destroy();
-    });
-    this.isImagePanelVisible = true;
-  }
-
-  /**
-   * 图片面板取消
-   */
-  imagePanelHandleCancel() {
-    this.isImagePanelVisible = false;
-    this.imagePanelComponent.destroy();
   }
 }

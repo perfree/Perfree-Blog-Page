@@ -1,0 +1,33 @@
+.selectImageBox{
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ddd;
+}
+.openImagePanelBox{
+  text-align: center;
+  line-height: 200px;
+  cursor: pointer;
+}
+.showImageBox{
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+.deleteImageBox{
+  display: block;
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  line-height: 200px;
+}
+.deleteBtn{
+  font-size: 18px;
+  cursor: pointer;
+
+}
+.deleteBtn:hover{
+  color: red;
+}

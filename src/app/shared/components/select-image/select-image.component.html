@@ -1,0 +1,18 @@
+<div class="selectImageBox">
+  <div class="openImagePanelBox" (click)="selectImg()" *ngIf="imgInfo === null">
+    <i nz-icon nzType="upload" nzTheme="outline"></i>
+    <span>选择图片</span>
+  </div>
+  <div class="showImageBox" *ngIf="imgInfo !== null" (mouseenter)="isShowDelete = true" (mouseleave)="isShowDelete = false">
+    <img [src]="serverUrl + imgInfo.filePath" width="100%" height="100%"/>
+    <div class="deleteImageBox" *ngIf="isShowDelete">
+      <i nz-icon nzType="delete" nzTheme="outline" class="deleteBtn" (click)="deleteImage()"></i>
+    </div>
+  </div>
+</div>
+
+<!-- 图片选择的弹出框 -->
+<nz-modal [(nzVisible)]="isImagePanelVisible" (nzOnCancel)="imagePanelHandleCancel()"
+          [nzFooter]="null" [nzWidth]="684">
+  <ng-container #imagePanel></ng-container>
+</nz-modal>
