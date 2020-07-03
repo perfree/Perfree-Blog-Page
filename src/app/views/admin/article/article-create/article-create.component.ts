@@ -117,6 +117,13 @@ export class ArticleCreateComponent implements OnInit {
       }
       this.validateForm.value.thumbnailId = this.selectImage.imgInfo.id;
     }
+    if (this.validateForm.value.tagId !== null && this.validateForm.value.tagId.length > 0) {
+      const tags = [];
+      this.validateForm.value.tagId.forEach(res => {
+        tags.push( {tagId: res});
+      });
+      this.validateForm.value.tags = tags;
+    }
     this.validateForm.value.articleContent = articleContent;
     this.httpUtil.post('/article/add', this.validateForm.value).then(res => {
       console.log(res);
