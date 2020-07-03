@@ -31,6 +31,7 @@ export class EditorMdDirective implements AfterViewInit {
     this.editor = editormd(this.id, this.editormdConfig); // 创建编辑器
     // 当编辑器内容改变时，触发textarea的change事件
     this.editor.on('change',  () => {
+      alert('123');
       this.onEditorChange.emit(this.getMarkdown());
     });
   }

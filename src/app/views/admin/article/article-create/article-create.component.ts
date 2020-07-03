@@ -5,6 +5,7 @@ import {HttpUtil} from '../../../../core/net/httpUtil';
 import {NzMessageService} from 'ng-zorro-antd';
 import {StorageUtil} from '../../../../core/storage/storageUtil';
 import {EditorConfig} from '../../../../shared/components/editor-markdown/editor-config';
+import {SelectImageComponent} from '../../../../shared/components/select-image/select-image.component';
 
 @Component({
   selector: 'app-article-create',
@@ -13,6 +14,18 @@ import {EditorConfig} from '../../../../shared/components/editor-markdown/editor
 })
 export class ArticleCreateComponent implements OnInit {
 
+  // markdown的内容
+  markdown: string;
+  @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
+  // editor的配置参数信息
+  config: EditorConfig;
+  validateForm: FormGroup;
+  @ViewChild('selectImage', {static: false}) selectImage: SelectImageComponent;
+  categoryList = [];
+  tagList = [];
+  isShowPassword = false;
+  isShowUploadThumbnail = false;
+
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
@@ -20,23 +33,7 @@ export class ArticleCreateComponent implements OnInit {
     private cfr: ComponentFactoryResolver,
     private message: NzMessageService
   ) {
-    this.markdown = '测试内容';
-    /*获取markdown编辑器内容
-    console.log(this.editorMarkdownDom.getEditorMarkdownComponentValue());
-    */
   }
-
-  // markdown的内容
-  markdown: string;
-  @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
-  // editor的配置参数信息
-  config: EditorConfig;
-  validateForm: FormGroup;
-
-  categoryList = [];
-  tagList = [];
-  isShowPassword = false;
-  isShowUploadThumbnail = false;
 
   ngOnInit() {
     this.config = new EditorConfig({height: '700px'});
@@ -55,6 +52,7 @@ export class ArticleCreateComponent implements OnInit {
     this.initCategory();
     this.initTag();
   }
+
   /**
    * 加载分类
    */
@@ -91,5 +89,37 @@ export class ArticleCreateComponent implements OnInit {
    */
   showUploadThumbnail(e) {
     this.isShowUploadThumbnail = e !== 0;
+  }
+
+  /**
+   * 保存文章
+   * @param type 类型0:发布,1:保存草稿
+   */
+  saveArticle(type) {
+    for (const i in this.validateForm.controls) {
+      if (this.validateForm[i] !== null) {
+        this.validateForm.controls[i].markAsDirty();
+        this.validateForm.controls[i].updateValueAndValidity();
+      }
+    }
+    if (!this.validateForm.valid) {
+      return;
+    }
+    const articleContent = this.editorMarkdownDom.getEditorMarkdownComponentValue();
+    if (articleContent === null || articleContent === '') {
+      this.message.error('请输入文章内容');
+      return;
+    }
+    if (this.validateForm.value.thumbnailType !== 0) {
+      if (this.selectImage.imgInfo === null) {
+        this.message.error('请选择封面图片');
+        return;
+      }
+      this.validateForm.value.thumbnailId = this.selectImage.imgInfo.id;
+    }
+    this.validateForm.value.articleContent = articleContent;
+    this.httpUtil.post('/article/add', this.validateForm.value).then(res => {
+      console.log(res);
+    });
   }
 }

@@ -95,10 +95,8 @@ export class EditorMarkdownComponent implements OnInit {
   /**
    * 得到editor编辑器里面的值
    */
-  getEditorMarkdownComponentValue(): {markdown: string, html: string} {
-    const obj: any = this.markdownForm.value;
-    obj.html = this.editorMdDirective.getHtml();
-    return obj;
+  getEditorMarkdownComponentValue() {
+    return this.editorMdDirective.getMarkdown();
   }
 
   /**
