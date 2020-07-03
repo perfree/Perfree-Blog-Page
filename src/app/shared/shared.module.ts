@@ -30,7 +30,8 @@ import { SelectImageComponent } from './components/select-image/select-image.com
     TagComponent,
     EditorMdDirective,
     EditorMarkdownComponent,
-    SelectImageComponent
+    SelectImageComponent,
+    ImagePanelComponent
   ],
   imports: [
     NgZorroAntdModule,

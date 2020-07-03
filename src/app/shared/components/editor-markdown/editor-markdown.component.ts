@@ -1,8 +1,10 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditorMdDirective} from '../../directive/EditorMdDirective';
 import {EditorConfig} from './editor-config';
+import {EditorImage} from './editor-image';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-editor-markdown',
@@ -20,13 +22,34 @@ export class EditorMarkdownComponent implements OnInit {
    */
   private oldMarkdownContent: string;
 
-  /**
-   * markdown编辑器的属性配置
-   */
+  // markdown编辑器的属性配置
   @Input() conf: EditorConfig;
 
   @ViewChild(EditorMdDirective, {static: false})
   private editorMdDirective: EditorMdDirective;
+  editorImage = EditorImage;
+
+  // 选择图片的弹出框
+  @ViewChild('imagePanel', { static: false, read: ViewContainerRef }) imagePanel: ViewContainerRef;
+  public imagePanelComponent;
+
+  static selectImage(cm, icon, cursor, selection, type, image) {
+    if (type === 0) {
+      EditorImage.cm = cm;
+      EditorImage.icon = icon;
+      EditorImage.cursor = cursor;
+      EditorImage.selection = selection;
+      EditorImage.isSelectImageModelVisible = true;
+    } else {
+      // 替换选中文本，如果没有选中文本，则直接插入
+      EditorImage.cm.replaceSelection('![' + image.fileName + ']' + '(' +
+        'http://' + environment.SERVER_URL + image.filePath + ' ' + '"' + image.fileName + '")');
+      // 如果当前没有选中的文本，将光标移到要输入的位置
+      if (EditorImage.selection === '') {
+        EditorImage.cm.setCursor(EditorImage.cursor.line, EditorImage.cursor.ch + 1);
+      }
+    }
+  }
 
   constructor(
     private router: Router,
@@ -76,5 +99,21 @@ export class EditorMarkdownComponent implements OnInit {
     const obj: any = this.markdownForm.value;
     obj.html = this.editorMdDirective.getHtml();
     return obj;
+  }
+
+  /**
+   * 图片选择面板取消
+   */
+  imagePanelHandleCancel() {
+    this.editorImage.isSelectImageModelVisible = false;
+  }
+
+  /**
+   * 同步图片至编辑器
+   * @param e 信息
+   */
+  syncImage(e) {
+    EditorMarkdownComponent.selectImage(null, null, null, null, 1 , e);
+    this.editorImage.isSelectImageModelVisible = false;
   }
 }

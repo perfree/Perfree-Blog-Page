@@ -1,39 +1,18 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import {EditorConfig} from '../../../../shared/components/editor-markdown/editor-config';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
 import {EditorMarkdownComponent} from '../../../../shared/components/editor-markdown/editor-markdown.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpUtil} from '../../../../core/net/httpUtil';
 import {NzMessageService} from 'ng-zorro-antd';
-import {CategoryCreateComponent} from '../../category/category-create/category-create.component';
 import {StorageUtil} from '../../../../core/storage/storageUtil';
-import {ImagePanelComponent} from '../../../../shared/components/image-panel/image-panel.component';
-import {SelectImageComponent} from '../../../../shared/components/select-image/select-image.component';
+import {EditorConfig} from '../../../../shared/components/editor-markdown/editor-config';
 
-declare var editormd: any;
 @Component({
   selector: 'app-article-create',
   templateUrl: './article-create.component.html',
   styleUrls: ['./article-create.component.css']
 })
 export class ArticleCreateComponent implements OnInit {
-  /**
-   * editor的配置参数信息
-   */
-  config: EditorConfig;
-  /**
-   * markdown的内容
-   */
-  markdown: string;
-  @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
-  validateForm: FormGroup;
 
-  categoryList = [];
-  tagList = [];
-  isShowPassword = false;
-  isShowUploadThumbnail = false;
-
-  // 选择图片
-  @ViewChild('selectImage', { static: false}) selectImage: SelectImageComponent;
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
@@ -41,14 +20,26 @@ export class ArticleCreateComponent implements OnInit {
     private cfr: ComponentFactoryResolver,
     private message: NzMessageService
   ) {
-    this.config = new EditorConfig({height: '700px'});
     this.markdown = '测试内容';
     /*获取markdown编辑器内容
     console.log(this.editorMarkdownDom.getEditorMarkdownComponentValue());
     */
   }
 
+  // markdown的内容
+  markdown: string;
+  @ViewChild('editorMarkdownDom', {static: false}) editorMarkdownDom: EditorMarkdownComponent;
+  // editor的配置参数信息
+  config: EditorConfig;
+  validateForm: FormGroup;
+
+  categoryList = [];
+  tagList = [];
+  isShowPassword = false;
+  isShowUploadThumbnail = false;
+
   ngOnInit() {
+    this.config = new EditorConfig({height: '700px'});
     this.validateForm = this.fb.group({
       articleTitle: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
       categoryId: null,
@@ -64,7 +55,6 @@ export class ArticleCreateComponent implements OnInit {
     this.initCategory();
     this.initTag();
   }
-
   /**
    * 加载分类
    */

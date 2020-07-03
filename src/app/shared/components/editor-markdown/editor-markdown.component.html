@@ -7,3 +7,11 @@
     <textarea formControlName="markdown" style="display: block;"></textarea>
   </div>
 </form>
+
+<!-- 图片选择的弹出框 -->
+<nz-modal [(nzVisible)]="editorImage.isSelectImageModelVisible" (nzOnCancel)="imagePanelHandleCancel()"
+          [nzFooter]="null" [nzWidth]="684">
+  <ng-container #imagePanel>
+    <app-image-panel (onSelectImg)="syncImage($event)"></app-image-panel>
+  </ng-container>
+</nz-modal>
