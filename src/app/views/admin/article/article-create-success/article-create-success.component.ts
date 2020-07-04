@@ -28,13 +28,13 @@ export class ArticleCreateSuccessComponent implements OnInit {
    * 在写一篇
    */
   addArticle() {
-    // his.router.navigate(['/admin/article/create']);
+    this.router.navigate(['/admin/article/create']);
   }
 
   /**
    * 查看文章
    */
   toArticle() {
-    this.router.navigate(['/admin/article/create']);
+    // this.router.navigate(['/admin/article/create']);
   }
 }
