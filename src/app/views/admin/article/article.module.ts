@@ -6,10 +6,11 @@ import {NgZorroAntdModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ArticleCreateComponent } from './article-create/article-create.component';
 import {SharedModule} from '../../../shared/shared.module';
+import { ArticleCreateSuccessComponent } from './article-create-success/article-create-success.component';
 
 
 @NgModule({
-  declarations: [ArticleCreateComponent],
+  declarations: [ArticleCreateComponent, ArticleCreateSuccessComponent],
   imports: [
     CommonModule,
     NgZorroAntdModule,

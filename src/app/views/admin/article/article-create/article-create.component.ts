@@ -6,6 +6,7 @@ import {NzMessageService} from 'ng-zorro-antd';
 import {StorageUtil} from '../../../../core/storage/storageUtil';
 import {EditorConfig} from '../../../../shared/components/editor-markdown/editor-config';
 import {SelectImageComponent} from '../../../../shared/components/select-image/select-image.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-article-create',
@@ -31,7 +32,8 @@ export class ArticleCreateComponent implements OnInit {
     private httpUtil: HttpUtil,
     public storageUtil: StorageUtil,
     private cfr: ComponentFactoryResolver,
-    private message: NzMessageService
+    private message: NzMessageService,
+    public router: Router
   ) {
   }
 
@@ -125,8 +127,13 @@ export class ArticleCreateComponent implements OnInit {
       this.validateForm.value.tags = tags;
     }
     this.validateForm.value.articleContent = articleContent;
+    this.validateForm.value.isDraft = type;
     this.httpUtil.post('/article/add', this.validateForm.value).then(res => {
-      console.log(res);
+      if (res.code === 200) {
+        this.router.navigate(['/admin/article/create/success'], {queryParams: {articleId: res.data, type}});
+      } else {
+        this.message.error(res.msg);
+      }
     });
   }
 }

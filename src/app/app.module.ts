@@ -24,7 +24,6 @@ import {LayoutPortalAsideComponent} from './layout/portal/layout-portal-aside/la
 import {LayoutPortalContentAsideComponent} from './layout/portal/layout-portal-content-aside/layout-portal-content-aside.component';
 import {LayoutPortalFooterComponent} from './layout/portal/layout-portal-footer/layout-portal-footer.component';
 import {SharedModule} from './shared/shared.module';
-import {LazyLoadImageModule} from 'ng-lazyload-image';
 
 @NgModule({
   declarations: [
