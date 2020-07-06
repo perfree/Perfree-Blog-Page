@@ -130,8 +130,8 @@ export class ArticleCreateComponent implements OnInit {
           tags.push( {tagId: res});
         }
       });
-      this.validateForm.value.tags = tags;
-      this.validateForm.value.addTags = addTags;
+      this.validateForm.value.articleTags = tags;
+      this.validateForm.value.tags = addTags;
     }
     this.validateForm.value.articleContent = articleContent;
     this.validateForm.value.isDraft = type;

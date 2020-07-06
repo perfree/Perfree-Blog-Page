@@ -1,0 +1,54 @@
+<div class="perfree-container">
+  <!-- 搜索表单部分 -->
+  <div class="searchPanel">
+    <form nz-form [nzLayout]="'inline'" [formGroup]="validateForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6">文章名</nz-form-label>
+        <nz-form-control [nzSpan]="18">
+          <input nz-input formControlName="articleTitle">
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button nzType="primary" class="tableBtn queryBtn" (click)="searchData()">
+        <i nz-icon nzType="search"></i>查询
+      </button>
+    </form>
+  </div>
+
+  <div class="dataPanel">
+    <nz-table #ajaxTable
+              [nzLoading]="loading"
+              [nzTotal]="total"
+              [(nzPageIndex)]="pageIndex"
+              [(nzPageSize)]="pageSize"
+              (nzPageIndexChange)="searchData()"
+              nzBordered
+              (nzPageSizeChange)="searchData(true)" [nzData]="listOfData">
+      <thead>
+      <tr>
+        <th>标题</th>
+        <th>内容</th>
+        <th>状态</th>
+        <th>分类</th>
+        <th>标签</th>
+        <th>是否加密</th>
+        <th>发布状态</th>
+        <th>发布人</th>
+        <th>发布时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of ajaxTable.data let i = index">
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleContent}}</td>
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleTitle}}</td>
+        <td>{{data.articleTitle}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
