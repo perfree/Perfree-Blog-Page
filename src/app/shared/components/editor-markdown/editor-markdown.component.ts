@@ -1,10 +1,12 @@
-import {Component, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {EditorMdDirective} from '../../directive/EditorMdDirective';
 import {EditorConfig} from './editor-config';
 import {EditorImage} from './editor-image';
 import {environment} from '../../../../environments/environment';
+import {CategoryCreateComponent} from '../../../views/admin/category/category-create/category-create.component';
+import {ImagePanelComponent} from '../image-panel/image-panel.component';
 
 @Component({
   selector: 'app-editor-markdown',
@@ -54,6 +56,7 @@ export class EditorMarkdownComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private cfr: ComponentFactoryResolver,
     private fb: FormBuilder
   ) { }
 
@@ -104,14 +107,17 @@ export class EditorMarkdownComponent implements OnInit {
    */
   imagePanelHandleCancel() {
     this.editorImage.isSelectImageModelVisible = false;
+    this.imagePanelComponent.destroy();
   }
 
-  /**
-   * 同步图片至编辑器
-   * @param e 信息
-   */
-  syncImage(e) {
-    EditorMarkdownComponent.selectImage(null, null, null, null, 1 , e);
-    this.editorImage.isSelectImageModelVisible = false;
+  openImagePanel() {
+    this.imagePanel.clear();
+    const dom = this.cfr.resolveComponentFactory(ImagePanelComponent);
+    this.imagePanelComponent = this.imagePanel.createComponent(dom);
+    this.imagePanelComponent.instance.onSelectImg.subscribe(res => {
+      EditorMarkdownComponent.selectImage(null, null, null, null, 1 , res);
+      this.editorImage.isSelectImageModelVisible = false;
+      this.imagePanelComponent.destroy();
+    });
   }
 }
