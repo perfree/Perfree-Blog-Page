@@ -33,11 +33,15 @@ export class ArticleCreateComponent implements OnInit {
     public storageUtil: StorageUtil,
     private cfr: ComponentFactoryResolver,
     private message: NzMessageService,
+    public route: ActivatedRoute,
     public router: Router
   ) {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((res) => {
+      console.log(res);
+    });
     this.config = new EditorConfig({height: '700px'});
     this.validateForm = this.fb.group({
       articleTitle: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],

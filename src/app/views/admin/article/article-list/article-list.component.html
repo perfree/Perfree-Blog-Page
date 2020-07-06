@@ -26,7 +26,6 @@
       <thead>
       <tr>
         <th>标题</th>
-        <th>内容</th>
         <th>状态</th>
         <th>分类</th>
         <th>标签</th>
@@ -34,19 +33,34 @@
         <th>发布状态</th>
         <th>发布人</th>
         <th>发布时间</th>
+        <th>操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let data of ajaxTable.data let i = index">
         <td>{{data.articleTitle}}</td>
-        <td>{{data.articleContent}}</td>
-        <td>{{data.articleTitle}}</td>
-        <td>{{data.articleTitle}}</td>
-        <td>{{data.articleTitle}}</td>
-        <td>{{data.articleTitle}}</td>
-        <td>{{data.articleTitle}}</td>
-        <td>{{data.articleTitle}}</td>
-        <td>{{data.articleTitle}}</td>
+        <td>
+          <ng-container *ngIf="data.status === 0">正常</ng-container>
+          <ng-container *ngIf="data.status === 1">隐藏</ng-container>
+          <ng-container *ngIf="data.status === 2">置顶</ng-container>
+        </td>
+        <td>{{data.category !== null ? data.category.categoryName : ''}}</td>
+        <td>
+          <nz-tag *ngFor="let o of data.tags">{{o.tagName}}</nz-tag>
+        </td>
+        <td>{{data.isEncrypt === 0? '不加密':'加密'}}</td>
+        <td>{{data.isDraft === 0 ? '正常': '草稿'}}</td>
+        <td>{{data.user.name}}</td>
+        <td>{{data.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>
+          <a class="operatingBtn" (click)="updateArticle(data.id)">编辑</a>
+          <a class="operatingBtn"
+             nz-popconfirm
+             nzPopconfirmTitle="确定要删除吗?"
+             nzPopconfirmPlacement="bottom"
+             (nzOnConfirm)="deleteArticle(data.id)"
+          >删除</a>
+        </td>
       </tr>
       </tbody>
     </nz-table>

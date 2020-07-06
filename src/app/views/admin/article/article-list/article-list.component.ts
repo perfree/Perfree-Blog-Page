@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {HttpUtil} from '../../../../core/net/httpUtil';
 import {StorageUtil} from '../../../../core/storage/storageUtil';
 import {NzMessageService} from 'ng-zorro-antd';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-article-list',
@@ -22,7 +23,8 @@ export class ArticleListComponent implements OnInit {
     private httpUtil: HttpUtil,
     public storageUtil: StorageUtil,
     private cfr: ComponentFactoryResolver,
-    private message: NzMessageService
+    private message: NzMessageService,
+    public router: Router
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,29 @@ export class ArticleListComponent implements OnInit {
       this.loading = false;
       this.total = res.total;
       this.listOfData = res.data;
+    });
+  }
+
+  /**
+   * 更新文章
+   * @param id id
+   */
+  updateArticle(id) {
+    this.router.navigate(['/admin/article/create'], {queryParams: {id}});
+  }
+
+  /**
+   * 删除文章
+   * @param id id
+   */
+  deleteArticle(id) {
+    this.httpUtil.delete('/article/delete/' + id).then(res => {
+      if (res.code === 200) {
+        this.message.success('删除成功');
+        this.searchData();
+      } else {
+        this.message.error('删除失败');
+      }
     });
   }
 }
