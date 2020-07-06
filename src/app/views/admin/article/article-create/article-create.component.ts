@@ -121,10 +121,17 @@ export class ArticleCreateComponent implements OnInit {
     }
     if (this.validateForm.value.tagId !== null && this.validateForm.value.tagId.length > 0) {
       const tags = [];
+      const addTags = [];
       this.validateForm.value.tagId.forEach(res => {
-        tags.push( {tagId: res});
+        const index = this.tagList.map((item) => item.id).indexOf(res);
+        if (index <= -1) {
+          addTags.push( {tagName: res});
+        } else {
+          tags.push( {tagId: res});
+        }
       });
       this.validateForm.value.tags = tags;
+      this.validateForm.value.addTags = addTags;
     }
     this.validateForm.value.articleContent = articleContent;
     this.validateForm.value.isDraft = type;
