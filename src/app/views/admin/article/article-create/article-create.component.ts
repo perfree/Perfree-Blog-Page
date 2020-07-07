@@ -33,11 +33,15 @@ export class ArticleCreateComponent implements OnInit {
     public storageUtil: StorageUtil,
     private cfr: ComponentFactoryResolver,
     private message: NzMessageService,
+    public route: ActivatedRoute,
     public router: Router
   ) {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((res) => {
+      console.log(res);
+    });
     this.config = new EditorConfig({height: '700px'});
     this.validateForm = this.fb.group({
       articleTitle: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
@@ -121,10 +125,17 @@ export class ArticleCreateComponent implements OnInit {
     }
     if (this.validateForm.value.tagId !== null && this.validateForm.value.tagId.length > 0) {
       const tags = [];
+      const addTags = [];
       this.validateForm.value.tagId.forEach(res => {
-        tags.push( {tagId: res});
+        const index = this.tagList.map((item) => item.id).indexOf(res);
+        if (index <= -1) {
+          addTags.push( {tagName: res});
+        } else {
+          tags.push( {tagId: res});
+        }
       });
-      this.validateForm.value.tags = tags;
+      this.validateForm.value.articleTags = tags;
+      this.validateForm.value.tags = addTags;
     }
     this.validateForm.value.articleContent = articleContent;
     this.validateForm.value.isDraft = type;

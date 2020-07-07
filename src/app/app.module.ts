@@ -35,7 +35,7 @@ import {SharedModule} from './shared/shared.module';
     LayoutPortalHeaderComponent,
     LayoutPortalAsideComponent,
     LayoutPortalContentAsideComponent,
-    LayoutPortalFooterComponent,
+    LayoutPortalFooterComponent
   ],
   imports: [
     BrowserModule,
