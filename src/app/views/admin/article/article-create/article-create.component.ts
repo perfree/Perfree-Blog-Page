@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {EditorMarkdownComponent} from '../../../../shared/components/editor-markdown/editor-markdown.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpUtil} from '../../../../core/net/httpUtil';
@@ -13,7 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   templateUrl: './article-create.component.html',
   styleUrls: ['./article-create.component.css']
 })
-export class ArticleCreateComponent implements OnInit {
+export class ArticleCreateComponent implements OnInit{
 
   // markdown的内容
   markdown: string;
@@ -41,11 +41,6 @@ export class ArticleCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((res: any) => {
-      if (res.id !== null && res.id !== undefined && res.id !== '') {
-        this.getUpdateData(res);
-      }
-    });
     this.config = new EditorConfig({height: '700px'});
     this.validateForm = this.fb.group({
       articleTitle: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
@@ -61,6 +56,11 @@ export class ArticleCreateComponent implements OnInit {
     });
     this.initCategory();
     this.initTag();
+    this.route.queryParams.subscribe((res: any) => {
+      if (res.id !== null && res.id !== undefined && res.id !== '') {
+        this.getUpdateData(res);
+      }
+    });
   }
 
   /**
@@ -177,13 +177,33 @@ export class ArticleCreateComponent implements OnInit {
           keyword: res.data.keyword,
           status: res.data.status,
           isEncrypt: res.data.isEncrypt,
-          password: res.data.password,
+          password: null,
           thumbnailType: res.data.thumbnailType,
           isAllowComment: res.data.isAllowComment
         });
         this.markdown = res.data.articleContent;
-        this.imageInfo = res.data.attach;
+        if (res.data.attach.id !== null && res.data.attach.id !== undefined) {
+          this.imageInfo = res.data.attach;
+        }
       }
     });
   }
+
+/*  formInit() {
+    this.updateData = null;
+    this.validateForm.patchValue({
+      articleTitle: null,
+      categoryId: null,
+      tagId: null,
+      articleSummary: null,
+      keyword: null,
+      status: [0],
+      isEncrypt: [0],
+      password: [null],
+      thumbnailType: [0],
+      isAllowComment: [0]
+    });
+    this.markdown = '';
+    this.imageInfo = null;
+  }*/
 }

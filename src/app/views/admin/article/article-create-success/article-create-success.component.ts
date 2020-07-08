@@ -34,7 +34,7 @@ export class ArticleCreateSuccessComponent implements OnInit {
   /**
    * 查看文章
    */
-  toArticle() {
-    // this.router.navigate(['/admin/article/create']);
+  toArticleList() {
+    this.router.navigate(['/admin/article/list']);
   }
 }

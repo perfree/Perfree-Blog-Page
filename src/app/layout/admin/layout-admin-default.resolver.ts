@@ -26,7 +26,7 @@ export class LayoutAdminDefaultResolver implements Resolve<LayoutAdminDefaultCom
         const url = state.url;
         let menus = res.data;
         if (url !== '/') {
-          menus = this.renderMenu(url, res.data);
+          menus = this.renderMenu(url.split('?')[0], res.data);
         } else {
           if (menus.length > 0 && menus[0].childMenu.length > 0) {
             menus[0].menuIsSelect = true;

@@ -5,7 +5,8 @@
 <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
   <ng-container *ngFor="let menu of menus">
     <ng-container *ngIf="menu.pid === -1 && menu.childMenu.length <= 0">
-      <li nz-menu-item nzMatchRouterExact [routerLink]="[menu.menuPath === null ? '': menu.menuPath]" [nzSelected]="menu.menuIsSelect">
+      <li nz-menu-item nzMatchRouterExact [routerLink]="[menu.menuPath === null ? '': menu.menuPath]"
+          [nzSelected]="menu.menuIsSelect">
         <i nz-icon [nzType]="menu.menuIcon"></i>
         <span>{{menu.menuName}}</span>
       </li>

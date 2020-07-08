@@ -18,7 +18,7 @@ export class LayoutAdminDefaultComponent implements OnInit {
     this.route.data.subscribe(res => {
       this.menus = res.data;
     });
-    this.router.navigateByUrl(this.switchUrl(this.menus));
+    this.switchUrl(this.menus);
   }
 
   /**
@@ -44,6 +44,7 @@ export class LayoutAdminDefaultComponent implements OnInit {
         url = menus[0].menuPath;
         menus[0].menuIsSelect = true;
       }
+      this.router.navigateByUrl(url);
     }
     return url;
   }
