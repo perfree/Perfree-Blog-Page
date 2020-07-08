@@ -8,6 +8,16 @@
           <input nz-input formControlName="articleTitle">
         </nz-form-control>
       </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">发布状态</nz-form-label>
+        <nz-form-control [nzSpan]="17">
+          <nz-select formControlName="isDraft">
+            <nz-option [nzValue]="1" nzLabel="草稿"></nz-option>
+            <nz-option [nzValue]="0" nzLabel="已发布"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
       <button nz-button nzType="primary" class="tableBtn queryBtn" (click)="searchData()">
         <i nz-icon nzType="search"></i>查询
       </button>

@@ -26,6 +26,8 @@ export class ArticleCreateComponent implements OnInit {
   tagList = [];
   isShowPassword = false;
   isShowUploadThumbnail = false;
+  imageInfo: any = null;
+  updateData: any = null;
 
   constructor(
     private fb: FormBuilder,
@@ -39,8 +41,10 @@ export class ArticleCreateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((res) => {
-      console.log(res);
+    this.route.queryParams.subscribe((res: any) => {
+      if (res.id !== null && res.id !== undefined && res.id !== '') {
+        this.getUpdateData(res);
+      }
     });
     this.config = new EditorConfig({height: '700px'});
     this.validateForm = this.fb.group({
@@ -139,11 +143,46 @@ export class ArticleCreateComponent implements OnInit {
     }
     this.validateForm.value.articleContent = articleContent;
     this.validateForm.value.isDraft = type;
-    this.httpUtil.post('/article/add', this.validateForm.value).then(res => {
+    let url = '/article/add';
+    if (this.updateData !== null) {
+      url = '/article/update';
+      this.validateForm.value.id = this.updateData.id;
+    }
+    this.httpUtil.post(url, this.validateForm.value).then(res => {
       if (res.code === 200) {
         this.router.navigate(['/admin/article/create/success'], {queryParams: {articleId: res.data, type}});
       } else {
         this.message.error(res.msg);
+      }
+    });
+  }
+
+  /**
+   * 获取更新的数据
+   * @param data 数据
+   */
+  getUpdateData(data) {
+    this.httpUtil.get('/article/getArticleById/' + data.id).then(res => {
+      if (res.code === 200) {
+        const tags = [];
+        res.data.tags.forEach(o => {
+          tags.push(o.id);
+        });
+        this.updateData = res.data;
+        this.validateForm.patchValue({
+          articleTitle: res.data.articleTitle,
+          categoryId: res.data.categoryId,
+          tagId: tags,
+          articleSummary: res.data.articleSummary,
+          keyword: res.data.keyword,
+          status: res.data.status,
+          isEncrypt: res.data.isEncrypt,
+          password: res.data.password,
+          thumbnailType: res.data.thumbnailType,
+          isAllowComment: res.data.isAllowComment
+        });
+        this.markdown = res.data.articleContent;
+        this.imageInfo = res.data.attach;
       }
     });
   }

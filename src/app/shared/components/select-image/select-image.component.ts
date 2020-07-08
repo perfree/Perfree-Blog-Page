@@ -1,4 +1,4 @@
-import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {ImagePanelComponent} from '../image-panel/image-panel.component';
 import {FormBuilder} from '@angular/forms';
 import {HttpUtil} from '../../../core/net/httpUtil';
@@ -16,7 +16,7 @@ export class SelectImageComponent implements OnInit {
   @ViewChild('imagePanel', { static: false, read: ViewContainerRef }) imagePanel: ViewContainerRef;
   public imagePanelComponent;
   isImagePanelVisible = false;
-  public imgInfo: any = null;
+  @Input() imgInfo: any = null;
   serverUrl;
   isShowDelete = false;
   constructor(

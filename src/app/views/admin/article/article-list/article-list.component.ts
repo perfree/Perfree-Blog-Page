@@ -31,6 +31,7 @@ export class ArticleListComponent implements OnInit {
     // 初始化表单
     this.validateForm = this.fb.group({
       articleTitle: '',
+      isDraft:  0
     });
     this.searchData(true);
   }
