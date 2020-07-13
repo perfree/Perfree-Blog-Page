@@ -1,9 +1,9 @@
 {
-  "name": "perfree-blog-page",
+  "name": "Perfree-Blog-Page",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --disable-host-check",
+    "start": "ng serve --host 0.0.0.0 --disable-host-check --port 4201",
     "build": "ng build --host 0.0.0.0 --disable-host-check",
     "test": "ng test",
     "lint": "ng lint",

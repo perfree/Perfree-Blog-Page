@@ -127,6 +127,7 @@ export class ArticleCreateComponent implements OnInit{
       }
       this.validateForm.value.thumbnailId = this.selectImage.imgInfo.id;
     }
+    // 标签处理
     if (this.validateForm.value.tagId !== null && this.validateForm.value.tagId.length > 0) {
       const tags = [];
       const addTags = [];
@@ -188,22 +189,4 @@ export class ArticleCreateComponent implements OnInit{
       }
     });
   }
-
-/*  formInit() {
-    this.updateData = null;
-    this.validateForm.patchValue({
-      articleTitle: null,
-      categoryId: null,
-      tagId: null,
-      articleSummary: null,
-      keyword: null,
-      status: [0],
-      isEncrypt: [0],
-      password: [null],
-      thumbnailType: [0],
-      isAllowComment: [0]
-    });
-    this.markdown = '';
-    this.imageInfo = null;
-  }*/
 }
