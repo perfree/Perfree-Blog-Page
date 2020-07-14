@@ -16,8 +16,8 @@ export interface CommentInterface {
   audit: number;
   createTime: string;
   updateTime: string;
-  childMenu?: TreeNodeInterface[];
-  parent?: TreeNodeInterface;
+  childComment?: CommentInterface[];
+  parent?: CommentInterface;
 }
 
 @Component({
@@ -38,8 +38,8 @@ export class CommentListComponent implements OnInit {
   total = 1;
   loading = true;
   // 数据集
-  listOfMapData: TreeNodeInterface[] = [];
-  mapOfExpandedData: { [key: string]: TreeNodeInterface[] } = {};
+  listOfMapData: CommentInterface[] = [];
+  mapOfExpandedData: { [key: string]: CommentInterface[] } = {};
   validateForm: FormGroup;
 
   // 添加弹出框
@@ -55,7 +55,7 @@ export class CommentListComponent implements OnInit {
   isUpdateVisible = false;
   isUpdateOkLoading = false;
 
-  static visitNode(node: TreeNodeInterface, hashMap: { [key: string]: boolean }, array: TreeNodeInterface[]): void {
+  static visitNode(node: CommentInterface, hashMap: { [key: string]: boolean }, array: CommentInterface[]): void {
     if (!hashMap[node.id]) {
       hashMap[node.id] = true;
       array.push(node);
@@ -66,19 +66,19 @@ export class CommentListComponent implements OnInit {
    * 转换树形数据
    * @param root 节点
    */
-  static convertTreeToList(root: TreeNodeInterface): TreeNodeInterface[] {
-    const stack: TreeNodeInterface[] = [];
-    const array: TreeNodeInterface[] = [];
+  static convertTreeToList(root: CommentInterface): CommentInterface[] {
+    const stack: CommentInterface[] = [];
+    const array: CommentInterface[] = [];
     const hashMap = {};
-    stack.push({ ...root, level: 0, expand: false });
+    stack.push({ ...root });
     while (stack.length !== 0) {
       // tslint:disable-next-line:no-non-null-assertion
       const node = stack.pop()!;
       CommentListComponent.visitNode(node, hashMap, array);
-      if (node.childMenu && node.childMenu.length > 0) {
-        for (let i = node.childMenu.length - 1; i >= 0; i--) {
+      if (node.childComment && node.childComment.length > 0) {
+        for (let i = node.childComment.length - 1; i >= 0; i--) {
           // tslint:disable-next-line:no-non-null-assertion
-          stack.push({ ...node.childMenu[i], level: node.level! + 1, expand: false, parent: node });
+          stack.push({ ...node.childComment[i], parent: node });
         }
       }
     }
