@@ -7,6 +7,7 @@ import { CategoryUpdateComponent } from './category-update/category-update.compo
 import { CategoryCreateComponent } from './category-create/category-create.component';
 import {NgZorroAntdModule, NzUploadModule} from 'ng-zorro-antd';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     CategoryRoutingModule,
     NzUploadModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   entryComponents: [
     CategoryCreateComponent,

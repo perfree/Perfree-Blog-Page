@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {environment} from '../../../../../environments/environment.prod';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NzMessageService} from 'ng-zorro-antd';
 import {HttpUtil} from '../../../../core/net/httpUtil';
+import { SelectImageComponent } from 'src/app/shared/components/select-image/select-image.component';
 
 @Component({
   selector: 'app-category-update',
@@ -13,9 +14,8 @@ export class CategoryUpdateComponent implements OnInit {
   @Input() data: any;
   validateForm: FormGroup;
   loading = false;
-  avatarUrl?: string;
-  uploadUrl;
-  uploadFilePath;
+  imageInfo: any = null;
+  @ViewChild('selectImage', {static: false}) selectImage: SelectImageComponent;
   constructor(
     private fb: FormBuilder,
     private httpUtil: HttpUtil,
@@ -23,9 +23,7 @@ export class CategoryUpdateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.uploadUrl = 'http://' + environment.SERVER_URL + '/upload/img';
-    this.avatarUrl = 'http://' + environment.SERVER_URL + this.data.categoryIcon;
-    this.uploadFilePath = this.data.categoryIcon;
+    this.imageInfo = {filePath: this.data.categoryIcon};
     // 初始化表单
     this.validateForm = this.fb.group({
       categoryName: [this.data.categoryName, [Validators.required, Validators.minLength(1), Validators.maxLength(15)]],
@@ -51,24 +49,9 @@ export class CategoryUpdateComponent implements OnInit {
     if (this.validateForm.valid) {
       result.isSuccess = true;
       this.validateForm.value.id = this.data.id;
-      this.validateForm.value.categoryIcon = this.uploadFilePath;
+      this.validateForm.value.categoryIcon = this.selectImage.imgInfo.filePath;
       result.data = this.validateForm.value;
     }
     return result;
   }
-
-  /**
-   * 上传改变事件
-   * @param info 信息
-   */
-  handleChange(info): void {
-    if (info.file.status === 'done') {
-      this.uploadFilePath = info.file.response.url;
-      this.avatarUrl = 'http://' + environment.SERVER_URL + info.file.response.url;
-      this.msg.success(`${info.file.name} 上传成功`);
-    } else if (info.file.status === 'error') {
-      this.msg.error(`${info.file.name} 上传失败`);
-    }
-  }
-
 }

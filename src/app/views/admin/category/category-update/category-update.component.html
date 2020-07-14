@@ -8,21 +8,7 @@
   <nz-form-item>
     <nz-form-label [nzSpan]="4">分类图标</nz-form-label>
     <nz-form-control [nzSpan]="18">
-      <nz-upload
-        class="avatar-uploader"
-        [nzAction]="uploadUrl"
-        nzName="file"
-        nzListType="picture-card"
-        [nzFileType]="'image/png,image/jpeg,image/gif,image/bmp'"
-        [nzShowUploadList]="false"
-        (nzChange)="handleChange($event)"
-      >
-        <ng-container *ngIf="!avatarUrl">
-          <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
-          <div class="ant-upload-text">Upload</div>
-        </ng-container>
-        <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
-      </nz-upload>
+      <app-select-image #selectImage [imgInfo]="imageInfo"></app-select-image>
     </nz-form-control>
   </nz-form-item>
 

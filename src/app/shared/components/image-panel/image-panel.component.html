@@ -13,7 +13,7 @@
         <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
         <div class="ant-upload-text">上传图片</div>
       </ng-container>
-      <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+      <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" height="292px"/>
     </nz-upload>
     <button nz-button nzType="primary" style="float: right;margin-left: 10px" (click)="selectUploadImg()">
       确定

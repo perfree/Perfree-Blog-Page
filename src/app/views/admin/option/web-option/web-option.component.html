@@ -2,30 +2,30 @@
     <div class="basisSetting-box">
         <h2 class="settingTitle">基础设置</h2>
         <nz-form-item>
-            <nz-form-label [nzSpan]="4" nzRequired>网站名称</nz-form-label>
-            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
-                <input nz-input formControlName="key" placeholder="请输入配置名" />
+            <nz-form-label [nzSpan]="4">网站名称</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="网站名称应在120个字符内">
+                <input nz-input formControlName="webName" placeholder="请输入网站名称" />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-            <nz-form-label [nzSpan]="4" nzRequired>网站标题</nz-form-label>
-            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
-                <input nz-input formControlName="key" placeholder="请输入配置名" />
+            <nz-form-label [nzSpan]="4">网站标题</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="网站标题应在120个字符内">
+                <input nz-input formControlName="webTitle" placeholder="请输入网站标题" />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-            <nz-form-label [nzSpan]="4" nzRequired>网站副标题</nz-form-label>
-            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
-                <input nz-input formControlName="key" placeholder="请输入配置名" />
+            <nz-form-label [nzSpan]="4">网站副标题</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="网站副标题应在120个字符内">
+                <input nz-input formControlName="webSubTitle" placeholder="请输入网站副标题" />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-            <nz-form-label [nzSpan]="4" nzRequired>网站域名</nz-form-label>
-            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
-                <input nz-input formControlName="key" placeholder="请输入配置名" />
+            <nz-form-label [nzSpan]="4">网站域名</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="网站域名应在128个字符内">
+                <input nz-input formControlName="webDomin" placeholder="请输入网站域名" />
             </nz-form-control>
         </nz-form-item>
 
@@ -41,17 +41,21 @@
     <div class="advancedSetting-box">
         <h2 class="settingTitle">其他设置</h2>
         <nz-form-item>
-            <nz-form-label [nzSpan]="4" nzRequired>备案号</nz-form-label>
-            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
-                <input nz-input formControlName="key" placeholder="请输入配置名" />
+            <nz-form-label [nzSpan]="4">备案号</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="备案号应在60个字符内">
+                <input nz-input formControlName="caseNumber" placeholder="请输入备案号" />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
-            <nz-form-label [nzSpan]="4" nzRequired>版权信息</nz-form-label>
-            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="配置名应在128个字符内">
-                <input nz-input formControlName="key" placeholder="请输入配置名" />
+            <nz-form-label [nzSpan]="4">版权信息</nz-form-label>
+            <nz-form-control [nzSpan]="20" nzHasFeedback nzValidatingTip="正在检查是否合规..." nzErrorTip="版权信息应在128个字符内">
+                <input nz-input formControlName="copyright" placeholder="请输入版权信息" />
             </nz-form-control>
         </nz-form-item>
+
+        <button nz-button nzType="primary" style="float: right;" (click)="saveSettings()">
+            <i nz-icon nzType="check" nzTheme="outline"></i>保存设置
+          </button>
     </div>
   </form>
