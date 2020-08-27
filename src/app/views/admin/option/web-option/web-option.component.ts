@@ -36,7 +36,7 @@ export class WebOptionComponent implements OnInit {
    * 加载初始数据
    */
   initForm() {
-    this.httpUtil.get('/option/getWebOption').then(res => {
+    this.httpUtil.get('/api/option/getWebOption').then(res => {
       if (res.code === 200) {
         this.validateForm.patchValue({
           webName: res.data.webName,
@@ -75,7 +75,7 @@ export class WebOptionComponent implements OnInit {
       { key: 'copyright', value: this.validateForm.value.copyright},
       { key: 'ico', value: this.selectImage.imgInfo === null ? null : this.selectImage.imgInfo.filePath}
     ];
-    this.httpUtil.post('/option/webOption', param).then(res => {
+    this.httpUtil.post('/api/option/webOption', param).then(res => {
       if (res.code === 200) {
         this.message.success('保存成功');
       } else {

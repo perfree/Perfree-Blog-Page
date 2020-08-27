@@ -1,22 +1,13 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {LoginGuard} from './core/canActivate/loginGuard';
 import {LayoutAdminDefaultResolver} from './layout/admin/layout-admin-default.resolver';
 import {LayoutAdminDefaultComponent} from './layout/admin/layout-admin-default/layout-admin-default.component';
-import {LayoutPortalDefaultComponent} from './layout/portal/layout-portal-default/layout-portal-default.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: LayoutPortalDefaultComponent,
-    children: [
-      {path: '', loadChildren: './views/portal/home/home.module#HomeModule'},
-      {path: 'archive', loadChildren: './views/portal/archive/archive.module#ArchiveModule'}
-    ]
-  },
-  {
-    path: 'admin',
     canActivate: [LoginGuard],
     resolve: {
       data: LayoutAdminDefaultResolver

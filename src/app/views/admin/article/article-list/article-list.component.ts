@@ -53,7 +53,7 @@ export class ArticleListComponent implements OnInit {
     param.pageSize = this.pageSize;
     param.form = this.validateForm.value;
     this.loading = true;
-    this.httpUtil.post('/article/list', param).then(res => {
+    this.httpUtil.post('/api/article/list', param).then(res => {
       this.loading = false;
       this.total = res.total;
       this.listOfData = res.data;
@@ -65,7 +65,7 @@ export class ArticleListComponent implements OnInit {
    * @param id id
    */
   updateArticle(id) {
-    this.router.navigate(['/admin/article/create'], {queryParams: {id}});
+    this.router.navigate(['/article/create'], {queryParams: {id}});
   }
 
   /**
@@ -73,7 +73,7 @@ export class ArticleListComponent implements OnInit {
    * @param id id
    */
   deleteArticle(id) {
-    this.httpUtil.delete('/article/delete/' + id).then(res => {
+    this.httpUtil.delete('/api/article/delete/' + id).then(res => {
       if (res.code === 200) {
         this.message.success('删除成功');
         this.searchData();

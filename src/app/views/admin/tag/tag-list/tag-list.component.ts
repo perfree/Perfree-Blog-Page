@@ -67,7 +67,7 @@ export class TagListComponent implements OnInit {
     param.pageSize = this.pageSize;
     param.form = this.validateForm.value;
     this.loading = true;
-    this.httpUtil.post('/tag/list', param).then(res => {
+    this.httpUtil.post('/api/tag/list', param).then(res => {
       this.loading = false;
       this.total = res.total;
       this.listOfData = res.data;
@@ -98,7 +98,7 @@ export class TagListComponent implements OnInit {
   addHandleOk() {
     const formValue = this.tagCreateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.post('/tag/add', formValue.data).then(res => {
+    this.httpUtil.post('/api/tag/add', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('添加成功');
         this.searchData();
@@ -124,7 +124,7 @@ export class TagListComponent implements OnInit {
   updateHandleOk() {
     const formValue = this.tagUpdateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.post('/tag/update', formValue.data).then(res => {
+    this.httpUtil.post('/api/tag/update', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('更新成功');
         this.searchData();
@@ -153,7 +153,7 @@ export class TagListComponent implements OnInit {
    * @param data 数据
    */
   deleteTag(data: any) {
-    this.httpUtil.delete('/tag/delete/' + data.id).then(res => {
+    this.httpUtil.delete('/api/tag/delete/' + data.id).then(res => {
       if (res.code === 200) {
         this.message.success('删除成功');
         this.searchData();

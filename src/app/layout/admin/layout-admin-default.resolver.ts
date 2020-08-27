@@ -21,7 +21,7 @@ export class LayoutAdminDefaultResolver implements Resolve<LayoutAdminDefaultCom
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    return this.httpUtil.pipGet('/getAdminMenuByAccount').pipe(map((res: any) => {
+    return this.httpUtil.pipGet('/api/getAdminMenuByAccount').pipe(map((res: any) => {
       if (res.code === 200) {
         const url = state.url;
         let menus = res.data;
@@ -39,7 +39,7 @@ export class LayoutAdminDefaultResolver implements Resolve<LayoutAdminDefaultCom
         return menus;
       } else {
         this.message.error('系统初始化失败,请重新登录!');
-        this.router.navigateByUrl('/passport/login');
+        this.router.navigateByUrl('/admin/passport/login');
       }
     }));
   }

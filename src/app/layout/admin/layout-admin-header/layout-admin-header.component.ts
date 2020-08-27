@@ -19,7 +19,7 @@ export class LayoutAdminHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get('/getUserInfo').then(res => {
+    this.http.get('/api/getUserInfo').then(res => {
       if (res.code === 200) {
         this.user = res.data;
       }

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: url("/assets/email-pattern.png");
+  background: url("/admin/assets/email-pattern.png");
 }
 .ant-card{
   box-shadow: 0 4px 7px #d4d0d0;

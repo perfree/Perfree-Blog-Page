@@ -32,7 +32,7 @@ export class ImagePanelComponent implements OnInit {
 
   ngOnInit() {
     this.serverUrl = 'http://' + environment.SERVER_URL;
-    this.uploadUrl = 'http://' + environment.SERVER_URL + '/upload/img';
+    this.uploadUrl = 'http://' + environment.SERVER_URL + '/api/upload/img';
     this.searchData(true);
   }
 
@@ -65,7 +65,7 @@ export class ImagePanelComponent implements OnInit {
     };
     param.pageIndex = this.pageIndex;
     param.pageSize = this.pageSize;
-    this.httpUtil.post('/attach/imageList', param).then(res => {
+    this.httpUtil.post('/api/attach/imageList', param).then(res => {
       this.imageListTotal = res.total;
       this.listOfData = res.data;
     });

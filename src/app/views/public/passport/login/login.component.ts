@@ -45,8 +45,9 @@ export class LoginComponent implements OnInit {
     if (!flag) {
       return this.validateForm.get('verifyCode').setErrors({ error: true, duplicated: true });
     }
-    this.http.post('/login', this.validateForm.value).then(res => {
+    this.http.post('/api/login', this.validateForm.value).then(res => {
       if (res && res.code === 200 ) {
+        alert(1)
         this.storageUtil.set(environment.LOCAL_STORAGE_NAME, res.data);
         this.router.navigate(['/']);
       } else {

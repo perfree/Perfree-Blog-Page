@@ -49,7 +49,6 @@
               [nzIndentSize]="item.level * 20"
               [nzShowExpand]="item.childComment && item.childComment.length > 0"
               [(nzExpand)]="item.expand"
-              (nzExpandChange)="collapse(mapOfExpandedData[data.id], item, $event)"
             >
             </td>
             <td>{{item.context}}</td>

@@ -67,7 +67,7 @@ export class ArticleCreateComponent implements OnInit{
    * 加载分类
    */
   initCategory() {
-    this.httpUtil.get('/category/all').then(res => {
+    this.httpUtil.get('/api/category/all').then(res => {
       this.categoryList = res.data;
     });
   }
@@ -76,7 +76,7 @@ export class ArticleCreateComponent implements OnInit{
    * 初始化标签
    */
   initTag() {
-    this.httpUtil.get('/tag/all').then(res => {
+    this.httpUtil.get('/api/tag/all').then(res => {
       this.tagList = res.data;
     });
   }
@@ -144,14 +144,14 @@ export class ArticleCreateComponent implements OnInit{
     }
     this.validateForm.value.articleContent = articleContent;
     this.validateForm.value.isDraft = type;
-    let url = '/article/add';
+    let url = '/api/article/add';
     if (this.updateData !== null) {
-      url = '/article/update';
+      url = '/api/article/update';
       this.validateForm.value.id = this.updateData.id;
     }
     this.httpUtil.post(url, this.validateForm.value).then(res => {
       if (res.code === 200) {
-        this.router.navigate(['/admin/article/create/success'], {queryParams: {articleId: res.data, type}});
+        this.router.navigate(['/article/create/success'], {queryParams: {articleId: res.data, type}});
       } else {
         this.message.error(res.msg);
       }
@@ -163,7 +163,7 @@ export class ArticleCreateComponent implements OnInit{
    * @param data 数据
    */
   getUpdateData(data) {
-    this.httpUtil.get('/article/getArticleById/' + data.id).then(res => {
+    this.httpUtil.get('/api/article/getArticleById/' + data.id).then(res => {
       if (res.code === 200) {
         const tags = [];
         res.data.tags.forEach(o => {

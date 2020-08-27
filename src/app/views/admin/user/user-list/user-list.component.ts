@@ -64,7 +64,7 @@ export class UserListComponent implements OnInit {
   isUpdateOkLoading = false;
 
   ngOnInit() {
-    this.httpUtil.get('/getUserInfo').then(res => {
+    this.httpUtil.get('/api/getUserInfo').then(res => {
       if (res.code === 200) {
         this.user = res.data;
       }
@@ -94,7 +94,7 @@ export class UserListComponent implements OnInit {
     param.pageSize = this.pageSize;
     param.form = this.validateForm.value;
     this.loading = true;
-    this.httpUtil.post('/user/list', param).then(res => {
+    this.httpUtil.post('/api/user/list', param).then(res => {
       this.loading = false;
       this.total = res.total;
       this.listOfMapData = res.data;
@@ -126,7 +126,7 @@ export class UserListComponent implements OnInit {
   addHandleOk() {
     const formValue = this.userCreateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.post('/user/add', formValue.data).then(res => {
+    this.httpUtil.post('/api/user/add', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('添加成功');
         this.searchData();
@@ -146,7 +146,7 @@ export class UserListComponent implements OnInit {
       this.message.error('删除失败');
       return;
     }
-    this.httpUtil.delete('/user/delete/' + id).then(res => {
+    this.httpUtil.delete('/api/user/delete/' + id).then(res => {
       if (res.code === 200) {
         this.message.success('删除成功');
         this.searchData();
@@ -162,7 +162,7 @@ export class UserListComponent implements OnInit {
    * @param status 状态
    */
   updateStatus(id, status) {
-    this.httpUtil.put('/user/updateStatus', {id, status}).then(res => {
+    this.httpUtil.put('/api/user/updateStatus', {id, status}).then(res => {
       if (res.code === 200) {
         this.message.success('状态更新成功');
         this.searchData();
@@ -198,7 +198,7 @@ export class UserListComponent implements OnInit {
   updateHandleOk() {
     const formValue = this.userUpdateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.put('/user/update', formValue.data).then(res => {
+    this.httpUtil.put('/api/user/update', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('更新成功');
         this.searchData();

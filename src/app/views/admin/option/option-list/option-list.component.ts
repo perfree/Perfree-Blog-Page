@@ -75,7 +75,7 @@ export class OptionListComponent implements OnInit {
     param.pageSize = this.pageSize;
     param.form = this.validateForm.value;
     this.loading = true;
-    this.httpUtil.post('/option/list', param).then(res => {
+    this.httpUtil.post('/api/option/list', param).then(res => {
       this.loading = false;
       this.total = res.total;
       this.listOfMapData = res.data;
@@ -106,7 +106,7 @@ export class OptionListComponent implements OnInit {
   addHandleOk() {
     const formValue = this.optionCreateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.post('/option/add', formValue.data).then(res => {
+    this.httpUtil.post('/api/option/add', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('添加成功');
         this.searchData();
@@ -122,7 +122,7 @@ export class OptionListComponent implements OnInit {
    * 删除配置
    */
   delete(id) {
-    this.httpUtil.delete('/option/delete/' + id).then(res => {
+    this.httpUtil.delete('/api/option/delete/' + id).then(res => {
       if (res.code === 200) {
         this.message.success('删除成功');
         this.searchData();
@@ -158,7 +158,7 @@ export class OptionListComponent implements OnInit {
   updateHandleOk() {
     const formValue = this.optionUpdateComponent.instance.getFormValue();
     if (!formValue.isSuccess) {return; }
-    this.httpUtil.put('/option/update', formValue.data).then(res => {
+    this.httpUtil.put('/api/option/update', formValue.data).then(res => {
       if (res.code === 200) {
         this.message.success('更新成功');
         this.searchData();
